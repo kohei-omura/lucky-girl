@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>✨ Lucky Girl Oracle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:    #0d0b1a;
+    --deep:   #12102a;
+    --card:   #1a1730;
+    --glass:  rgba(255,255,255,.06);
+    --border: rgba(255,255,255,.1);
+    --gold:   #e8c96a;
+    --rose:   #f49aad;
+    --violet: #a78bfa;
+    --ice:    #93c5fd;
+    --text:   #f0eaff;
+    --muted:  #8b80ac;
+    --green:  #6ee7b7;
+    --sakura: #ffd6e0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Noto Sans JP', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Star background ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(167,139,250,.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(244,154,173,.10) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(232,201,106,.06) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .stars {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,.5), transparent),
+      radial-gradient(1px 1px at 30% 40%, rgba(255,255,255,.4), transparent),
+      radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,.6), transparent),
+      radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,.3), transparent),
+      radial-gradient(1px 1px at 90% 25%, rgba(255,255,255,.5), transparent),
+      radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,.4), transparent),
+      radial-gradient(1px 1px at 55% 85%, rgba(255,255,255,.3), transparent),
+      radial-gradient(1px 1px at 80% 90%, rgba(255,255,255,.5), transparent),
+      radial-gradient(2px 2px at 40% 30%, rgba(232,201,106,.4), transparent),
+      radial-gradient(2px 2px at 65% 50%, rgba(167,139,250,.4), transparent),
+      radial-gradient(1.5px 1.5px at 25% 55%, rgba(244,154,173,.5), transparent);
+  }
+
+  .wrap { position: relative; z-index: 1; max-width: 520px; margin: 0 auto; padding: 0 16px 80px; }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    padding: 40px 0 28px;
+    position: relative;
+  }
+  .header-subtitle {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: .62rem;
+    letter-spacing: .3em;
+    color: var(--gold);
+    margin-bottom: 10px;
+    opacity: .85;
+  }
+  .header-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 50%, var(--violet) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .header-date {
+    font-size: .75rem;
+    color: var(--muted);
+    letter-spacing: .1em;
+  }
+
+  /* ── Today Fortune Bar ── */
+  .fortune-bar {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    align-items: center;
+    backdrop-filter: blur(8px);
+  }
+  .fb-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .fb-label { font-size: .58rem; color: var(--muted); letter-spacing: .08em; }
+  .fb-value { font-size: .8rem; font-weight: 700; color: var(--text); }
+  .fb-value.gold { color: var(--gold); }
+  .fb-value.rose { color: var(--rose); }
+  .fb-value.violet { color: var(--violet); }
+  .fb-value.green { color: var(--green); }
+
+  /* ── Main image card ── */
+  .image-card {
+    background: linear-gradient(145deg, rgba(26,23,48,.9), rgba(18,16,42,.95));
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .image-header {
+    padding: 16px 20px 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .image-header-left { display: flex; align-items: center; gap: 8px; }
+  .image-header-label {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: .6rem;
+    letter-spacing: .2em;
+    color: var(--gold);
+  }
+  .image-theme-badge {
+    font-size: .68rem;
+    background: rgba(232,201,106,.12);
+    border: 1px solid rgba(232,201,106,.25);
+    color: var(--gold);
+    padding: 2px 10px;
+    border-radius: 20px;
+  }
+
+  .image-wrap {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    background: linear-gradient(180deg, rgba(30,20,50,.8) 0%, rgba(10,8,25,.9) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main-image {
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transition: opacity .8s ease;
+  }
+  .main-image.loaded { opacity: 1; }
+
+  .loading-overlay {
+    position: absolute; inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background: rgba(13,11,26,.85);
+    transition: opacity .5s ease;
+  }
+  .loading-overlay.hidden { opacity: 0; pointer-events: none; }
+
+  .loading-icon {
+    width: 56px; height: 56px;
+    border: 2px solid rgba(232,201,106,.2);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .loading-text {
+    font-family: 'Shippori Mincho', serif;
+    font-size: .8rem;
+    color: var(--gold);
+    letter-spacing: .15em;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .loading-sub { font-size: .68rem; color: var(--muted); letter-spacing: .06em; }
+  @keyframes pulse { 0%,100%{opacity:.6} 50%{opacity:1} }
+
+  /* Error state */
+  .error-state {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 60px 20px;
+    text-align: center;
+  }
+  .error-icon { font-size: 2.4rem; }
+  .error-msg { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+
+  /* ── Prompt reveal ── */
+  .prompt-section {
+    padding: 12px 20px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .prompt-label {
+    font-size: .6rem;
+    letter-spacing: .12em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .prompt-text {
+    font-size: .7rem;
+    color: rgba(255,255,255,.45);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* ── Action buttons ── */
+  .action-row {
+    display: flex;
+    gap: 10px;
+    padding: 0 20px 20px;
+  }
+  .btn {
+    flex: 1;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 8px;
+    font-size: .78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .2s ease;
+    letter-spacing: .06em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .btn:active { transform: scale(.97); }
+  .btn-regen {
+    background: linear-gradient(135deg, rgba(167,139,250,.2), rgba(244,154,173,.2));
+    border: 1px solid rgba(167,139,250,.35);
+    color: var(--violet);
+  }
+  .btn-regen:hover { background: linear-gradient(135deg, rgba(167,139,250,.3), rgba(244,154,173,.3)); }
+  .btn-dl {
+    background: linear-gradient(135deg, rgba(232,201,106,.2), rgba(110,231,183,.15));
+    border: 1px solid rgba(232,201,106,.35);
+    color: var(--gold);
+  }
+  .btn-dl:hover { background: linear-gradient(135deg, rgba(232,201,106,.3), rgba(110,231,183,.25)); }
+  .btn:disabled { opacity: .45; cursor: not-allowed; }
+
+  /* ── Divination result ── */
+  .div-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 16px 18px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(8px);
+  }
+  .div-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: .6rem;
+    letter-spacing: .2em;
+    color: var(--gold);
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .div-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .div-item {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .div-item-label { font-size: .58rem; color: var(--muted); margin-bottom: 4px; letter-spacing: .06em; }
+  .div-item-value { font-size: .82rem; font-weight: 700; }
+  .div-item-sub { font-size: .62rem; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+
+  /* ── Color palette ── */
+  .palette-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    align-items: center;
+  }
+  .palette-label { font-size: .62rem; color: var(--muted); }
+  .palette-swatch {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.15);
+    box-shadow: 0 0 8px rgba(0,0,0,.4);
+  }
+  .palette-color-name { font-size: .65rem; color: rgba(255,255,255,.5); }
+
+  /* ── History ── */
+  .history-section { margin-top: 8px; }
+  .history-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: .65rem;
+    letter-spacing: .2em;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .history-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .hist-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 2/3;
+    background: var(--deep);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: transform .2s ease;
+  }
+  .hist-item:hover { transform: scale(1.03); }
+  .hist-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hist-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(13,11,26,.9));
+    padding: 16px 6px 6px;
+  }
+  .hist-date { font-size: .55rem; color: var(--gold); letter-spacing: .06em; text-align: center; }
+  .hist-theme { font-size: .5rem; color: var(--muted); text-align: center; }
+
+  /* ── Modal ── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.85);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-inner {
+    max-width: 420px; width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .modal-img { width: 100%; display: block; }
+  .modal-info { padding: 14px 16px; }
+  .modal-date { font-size: .7rem; color: var(--gold); margin-bottom: 4px; }
+  .modal-theme { font-size: .75rem; color: var(--muted); margin-bottom: 10px; }
+  .modal-close {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: .8rem;
+    cursor: pointer;
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(20px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+  .image-card { animation: fadeUp .6s ease both; }
+  .fortune-bar { animation: fadeUp .6s .1s ease both; }
+  .div-card { animation: fadeUp .6s .2s ease both; }
+  .history-section { animation: fadeUp .6s .3s ease both; }
+
+  /* ── Lucky tag ── */
+  .lucky-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    padding: 0 20px 14px;
+  }
+  .lucky-tag {
+    font-size: .65rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid;
+    letter-spacing: .04em;
+  }
+
+  /* No history */
+  .no-history {
+    text-align: center;
+    padding: 30px;
+    color: var(--muted);
+    font-size: .78rem;
+  }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <!-- Header -->
+  <header>
+    <div class="header-subtitle">DAILY FORTUNE GIRL</div>
+    <div class="header-title">運気の女神</div>
+    <div class="header-date" id="headerDate">—</div>
+  </header>
+
+  <!-- Fortune Bar -->
+  <div class="fortune-bar" id="fortuneBar">
+    <div class="fb-item">
+      <span class="fb-label">六曜</span>
+      <span class="fb-value gold" id="fb-rokuyo">—</span>
+    </div>
+    <div class="fb-item">
+      <span class="fb-label">月齢</span>
+      <span class="fb-value violet" id="fb-moon">—</span>
+    </div>
+    <div class="fb-item">
+      <span class="fb-label">九星</span>
+      <span class="fb-value" id="fb-kyusei">—</span>
+    </div>
+    <div class="fb-item">
+      <span class="fb-label">日柱</span>
+      <span class="fb-value rose" id="fb-pillar">—</span>
+    </div>
+    <div class="fb-item">
+      <span class="fb-label">タロット</span>
+      <span class="fb-value" id="fb-tarot">—</span>
+    </div>
+    <div class="fb-item">
+      <span class="fb-label">運気</span>
+      <span class="fb-value green" id="fb-score">—</span>
+    </div>
+  </div>
+
+  <!-- Main Image Card -->
+  <div class="image-card" id="imageCard">
+    <div class="image-header">
+      <div class="image-header-left">
+        <span class="image-header-label">TODAY'S ORACLE</span>
+      </div>
+      <span class="image-theme-badge" id="themeLabel">—</span>
+    </div>
+
+    <div class="image-wrap">
+      <img class="main-image" id="mainImg" alt="今日の運気の女の子">
+      <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-icon"></div>
+        <div class="loading-text">星が囁いています…</div>
+        <div class="loading-sub" id="loadingPromptHint">占い結果を解析中</div>
+      </div>
+      <div class="error-state" id="errorState">
+        <div class="error-icon">🌙</div>
+        <div class="error-msg">星の導きが届きませんでした<br><small style="color:var(--muted)">しばらく待って再生成してください</small></div>
+      </div>
+    </div>
+
+    <!-- Lucky tags -->
+    <div class="lucky-tags" id="luckyTags"></div>
+
+    <!-- Prompt reveal -->
+    <div class="prompt-section">
+      <div class="prompt-label">✦ 生成プロンプト</div>
+      <div class="prompt-text" id="promptText">占い結果を解析してプロンプトを生成します…</div>
+    </div>
+
+    <!-- Actions -->
+    <div class="action-row">
+      <button class="btn btn-regen" id="regenBtn" onclick="regenerate()">✦ 再生成</button>
+      <button class="btn btn-dl" id="dlBtn" onclick="downloadImage()" disabled>↓ ダウンロード</button>
+    </div>
+  </div>
+
+  <!-- Divination Details -->
+  <div class="div-card" id="divCard">
+    <div class="div-title">✦ 今日の鑑定詳細 ✦</div>
+    <div class="div-grid" id="divGrid">
+      <!-- filled by JS -->
+    </div>
+    <div class="palette-row" id="paletteRow">
+      <span class="palette-label">ラッキーカラー</span>
+    </div>
+  </div>
+
+  <!-- History -->
+  <div class="history-section">
+    <div class="history-title">✦ ORACLE GALLERY ✦</div>
+    <div class="history-grid" id="historyGrid">
+      <div class="no-history">まだ履歴がありません</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- History Modal -->
+<div class="modal-overlay" id="histModal" onclick="closeModal(event)">
+  <div class="modal-inner">
+    <img class="modal-img" id="modalImg">
+    <div class="modal-info">
+      <div class="modal-date" id="modalDate"></div>
+      <div class="modal-theme" id="modalTheme"></div>
+      <button class="modal-close" onclick="closeModal()">閉じる</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════
+//  DIVINATION ENGINE
+// ════════════════════════════════════════
+
+// Personal data
+const BIRTH = { year:1993, month:4, day:14, hour:6, zodiac:'牡羊座', blood:'B', eto:'酉' };
+
+// ── 旧暦変換（六曜の正確な計算のため）──
+const LUNAR_DATA_LG = {
+  2023:{sf:[1,22],m:[30,30,29,30,29,30,29,30,29,29,30,29,30],lp:2},
+  2024:{sf:[2,10],m:[30,29,30,30,29,30,29,30,29,30,29,29],lp:null},
+  2025:{sf:[1,29],m:[30,29,30,29,30,30,29,30,29,30,29,29],lp:null},
+  2026:{sf:[2,17],m:[30,29,30,29,30,30,29,30,29,30,29,30],lp:null},
+  2027:{sf:[2,6], m:[29,30,29,30,29,30,30,29,30,30,29,29],lp:null},
+  2028:{sf:[1,26],m:[30,29,30,29,30,29,30,29,30,30,30,29,29],lp:5},
+};
+function solarToLunarLG(sy, sm, sd) {
+  const date = new Date(sy, sm-1, sd);
+  let ly = sy;
+  let d = LUNAR_DATA_LG[ly];
+  if(!d) { // fallback: approximate with solar month/day
+    return { month: sm, day: sd };
+  }
+  let sf = new Date(ly, d.sf[0]-1, d.sf[1]);
+  if(date < sf) {
+    ly--; d = LUNAR_DATA_LG[ly];
+    if(!d) return { month: sm, day: sd };
+    sf = new Date(ly, d.sf[0]-1, d.sf[1]);
+  }
+  let rem = Math.floor((date - sf) / 86400000);
+  let lm = 1;
+  const leapM = d.lp;
+  for(let i = 0; i < d.m.length; i++) {
+    if(rem < d.m[i]) return { month: lm, day: rem + 1 };
+    rem -= d.m[i];
+    if(leapM && i === leapM - 1) lm--;
+    lm++;
+  }
+  return { month: lm, day: rem + 1 };
+}
+
+// 六曜（旧暦月日から正確に計算）
+// 旧暦1月1日=先勝 から6日周期: 先勝,友引,先負,仏滅,大安,赤口
+const ROKUYO = ['先勝','友引','先負','仏滅','大安','赤口'];
+const ROKUYO_AURA = {
+  '大安': { mood:'radiant',   color:'#FFD700', adj:'祝福された',   eng:'blessed, radiant aura, golden light' },
+  '友引': { mood:'warm',      color:'#FF9FB0', adj:'縁に恵まれた', eng:'warm smile, gentle aura, soft pink light' },
+  '先勝': { mood:'energetic', color:'#FFA500', adj:'活気あふれる', eng:'energetic, confident, sunrise glow' },
+  '先負': { mood:'serene',    color:'#87CEEB', adj:'穏やかな',     eng:'serene, peaceful, soft blue atmosphere' },
+  '仏滅': { mood:'mystical',  color:'#9B59B6', adj:'神秘的な',     eng:'mysterious, mystical aura, deep purple light' },
+  '赤口': { mood:'intense',   color:'#FF4444', adj:'情熱的な',     eng:'intense eyes, passionate, crimson accent' },
+};
+function getRokuyo(date) {
+  const lunar = solarToLunarLG(date.getFullYear(), date.getMonth()+1, date.getDate());
+  // 正式式: (旧暦月 + 旧暦日 - 2) % 6
+  const idx = ((lunar.month + lunar.day - 2) % 6 + 6) % 6;
+  return ROKUYO[idx];
+}
+
+// 月齢
+function getMoonAge(ts) {
+  const knownNew = new Date(2000,0,6).getTime();
+  const age = ((ts - knownNew) / 86400000) % 29.53;
+  return { age: age < 0 ? age + 29.53 : age };
+}
+function getMoonPhase(age) {
+  if(age < 1.85 || age > 27.5) return { name:'新月',    icon:'🌑', eng:'new moon magic, dark sky stars',        energy:'rebirth' };
+  if(age < 7.38)                return { name:'三日月',  icon:'🌒', eng:'crescent moon glow, wishing star',      energy:'hope' };
+  if(age < 11.07)               return { name:'上弦の月',icon:'🌓', eng:'half moon light, determination',        energy:'action' };
+  if(age < 14.77)               return { name:'十三夜',  icon:'🌔', eng:'nearly full moon, magical night',       energy:'anticipation' };
+  if(age < 16.61)               return { name:'満月',    icon:'🌕', eng:'full moon glowing, moonlit night, ethereal', energy:'peak power' };
+  if(age < 20.3)                return { name:'十六夜',  icon:'🌖', eng:'waning moon, gentle silver light',      energy:'reflection' };
+  if(age < 22.15)               return { name:'下弦の月',icon:'🌗', eng:'half moon waning, twilight',            energy:'release' };
+                                return { name:'有明月',  icon:'🌘', eng:'dawn moon, morning dew, delicate light', energy:'renewal' };
+}
+
+// 九星気学（日家九星：エポック日数から直接算出）
+// 検証: 2026/3/3(epochDay=20515) → (20515+2)%9=6 → 七赤金星 ✅
+const KYUSEI_LIST = ['一白水星','二黒土星','三碧木星','四緑木星','五黄土星','六白金星','七赤金星','八白土星','九紫火星'];
+function getDailyKyusei(date) {
+  const epochDays = Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000);
+  return KYUSEI_LIST[(epochDays + 2) % 9];
+}
+
+// 四柱推命 日柱（オフセット+17で正確な干支を算出）
+// 検証: 2026/3/3(epochDay=20515) → kanshi=(20515+17)%60=12 → 丙子 ✅
+const STEMS   = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+const BRANCHES= ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+const ELEM_STEM  = {甲:'木',乙:'木',丙:'火',丁:'火',戊:'土',己:'土',庚:'金',辛:'金',壬:'水',癸:'水'};
+const ELEM_ENG   = {木:'wood, nature, spring green', 火:'fire, vibrant, warm orange', 土:'earth, cozy, amber', 金:'metal, elegant, silver white', 水:'water, dreamy, blue indigo'};
+const ELEM_STYLE = {木:'anime', 火:'anime', 土:'realistic', 金:'realistic', 水:'anime'};
+const ELEM_COLOR = {木:'#6EE7B7', 火:'#F87171', 土:'#C9A84C', 金:'#E0E7FF', 水:'#38BDF8'};
+
+function getDayPillar(date) {
+  const epochDays = Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000);
+  const kanshi   = ((epochDays + 17) % 60 + 60) % 60;
+  const stemIdx  = kanshi % 10;
+  const branchIdx= kanshi % 12;
+  const stem = STEMS[stemIdx], branch = BRANCHES[branchIdx];
+  return { pillar: stem+branch, stem, branch, element: ELEM_STEM[stem] };
+}
+
+// タロット
+const TAROT = [
+  {n:'愚者', eng:'carefree wanderer girl, wind in hair, adventurous'},
+  {n:'魔術師', eng:'magical girl with wand, sparkles, confident'},
+  {n:'女教皇', eng:'wise girl, celestial robes, moonlight, serene'},
+  {n:'女帝', eng:'beautiful empress girl, flowers blooming, abundant'},
+  {n:'皇帝', eng:'regal girl, crown, powerful stance, commanding'},
+  {n:'法王', eng:'spiritual girl, divine light, sacred wisdom'},
+  {n:'恋人', eng:'girl in dreamy garden, roses, romantic atmosphere'},
+  {n:'戦車', eng:'triumphant girl, victory, dynamic pose, radiant'},
+  {n:'力', eng:'gentle girl taming lion, courage and grace'},
+  {n:'隠者', eng:'thoughtful girl with lantern, moonlit path, wise'},
+  {n:'運命の輪', eng:'girl at cosmic wheel, golden fate, magical swirl'},
+  {n:'正義', eng:'balanced girl, scales, elegant, truth seeker'},
+  {n:'吊された男', eng:'dreamy upside-down girl, peaceful, ethereal light'},
+  {n:'死神', eng:'mystical girl with scythe, transformation, dark beauty'},
+  {n:'節制', eng:'angelic girl pouring light, balanced, golden wings'},
+  {n:'悪魔', eng:'mischievous dark girl, chains of temptation, alluring'},
+  {n:'塔', eng:'dramatic girl, lightning flash, revelation, shocked'},
+  {n:'星', eng:'girl under starry sky, hope pouring, celestial peace'},
+  {n:'月', eng:'dreamy girl in moonlit forest, mystery, illusion'},
+  {n:'太陽', eng:'radiant girl in sunflower field, joyful, warm golden'},
+  {n:'審判', eng:'divine girl with trumpet, awakening, pure white light'},
+  {n:'世界', eng:'dancing girl in cosmic wreath, completion, bliss'},
+];
+function getTarot(now) {
+  const seed = now.getFullYear()*10000 + (now.getMonth()+1)*100 + now.getDate();
+  return TAROT[seed % TAROT.length];
+}
+
+// 運気スコア
+function calcScore(rokuyo, moon, pillar, now) {
+  let s = 60;
+  const rb = {'大安':10,'友引':6,'先勝':5,'先負':3,'赤口':2,'仏滅':1};
+  s += rb[rokuyo] || 3;
+  s += Math.round(moon.age < 3 || moon.age > 27 ? 8 : moon.age < 7 ? 5 : moon.age < 15 ? 6 : 4);
+  const dayBon = [4,2,5,3,6,4,8,3,5,2,6,4,5,3,4,6,5,2,6,4,5,3,4,6,5,3,4,5,2,4,4];
+  s += dayBon[now.getDate() % dayBon.length];
+  return Math.min(99, Math.max(55, s));
+}
+
+// Lucky colors
+const LUCKY_COLORS = {
+  木: [{name:'エメラルドグリーン', hex:'#50C878'}, {name:'萌葱色', hex:'#4F7942'}, {name:'桜色', hex:'#FFB7C5'}],
+  火: [{name:'朱色', hex:'#E34234'}, {name:'珊瑚色', hex:'#FF7F50'}, {name:'薔薇色', hex:'#FF66B2'}],
+  土: [{name:'琥珀色', hex:'#FFBF00'}, {name:'小麦色', hex:'#F5DEB3'}, {name:'桃色', hex:'#FFB6C1'}],
+  金: [{name:'白磁色', hex:'#F2F0EB'}, {name:'銀色', hex:'#C0C0C0'}, {name:'藤色', hex:'#9FA8D4'}],
+  水: [{name:'瑠璃色', hex:'#4169E1'}, {name:'水色', hex:'#87CEEB'}, {name:'藍色', hex:'#191970'}],
+};
+
+// ════════════════════════════════════════
+//  PROMPT BUILDER
+// ════════════════════════════════════════
+function buildPrompt(div) {
+  const { rokuyo, moon, pillar, tarot, score, element, style, luckyColors } = div;
+  const rokuyoData = ROKUYO_AURA[rokuyo] || ROKUYO_AURA['大安'];
+  const colorNames = luckyColors.map(c => c.name + ' colored').join(', ');
+
+  const stylePrefix = style === 'anime'
+    ? 'best quality, ultra-detailed, anime illustration, 2d art, beautiful japanese girl,'
+    : 'best quality, highly detailed, photorealistic, beautiful japanese girl, soft skin,';
+
+  const charBase = 'long flowing dark hair, expressive clear eyes, graceful elegant, gentle expression, elegant posture,';
+
+  const elemTheme = ELEM_ENG[element] || 'harmonious, balanced';
+  const moonEng   = moon.eng;
+  const tarotEng  = tarot.eng;
+  const moodEng   = rokuyoData.eng;
+  const seasonMap = { 木:'spring blossoms, cherry blossom petals, soft pink sky', 火:'summer vibrant, blue sky, sunlit', 土:'autumn golden leaves, warm light', 金:'winter snow, crystal clear, white light', 水:'rainy season, misty, ethereal blue' };
+  const season    = seasonMap[element] || 'beautiful natural scenery';
+  const scoreBoost = score >= 85 ? 'divine radiance, blessed aura, golden particles, sparkling light,' : score >= 75 ? 'soft glow, gentle shimmer, beautiful light,' : 'serene, peaceful, natural light,';
+
+  const outfit = style === 'anime'
+    ? 'beautiful detailed outfit, flowing dress, delicate accessories,'
+    : 'stylish elegant outfit, natural makeup, refined appearance,';
+
+  const fullPrompt = [stylePrefix, charBase, outfit, elemTheme+',', moonEng+',', moodEng+',', tarotEng+',', season+',', scoreBoost, 'highly aesthetic, masterpiece, perfect composition, cinematic lighting, bokeh background'].join(' ');
+
+  const negative = 'nsfw, explicit, nude, ugly, deformed, bad anatomy, extra limbs, blurry, low quality, watermark, text, logo';
+
+  return { prompt: fullPrompt, negative, theme: `${element}・${rokuyo}・${moon.name}` };
+}
+
+// ════════════════════════════════════════
+//  MAIN APP STATE
+// ════════════════════════════════════════
+let currentDiv = null;
+let currentPromptData = null;
+let currentImageUrl = null;
+let isGenerating = false;
+
+function computeToday() {
+  const now = new Date();
+  const rokuyo   = getRokuyo(now);
+  const moonData  = getMoonAge(now.getTime());
+  const moon      = { ...getMoonPhase(moonData.age), age: moonData.age };
+  const pillar    = getDayPillar(now);
+  const tarot     = getTarot(now);
+  const kyusei    = getDailyKyusei(now);
+  const score     = calcScore(rokuyo, moon, pillar, now);
+  const element   = pillar.element;
+  const style     = ELEM_STYLE[element] || 'anime';
+  const luckyColors = LUCKY_COLORS[element] || LUCKY_COLORS['金'];
+  return { now, rokuyo, moon, pillar, tarot, kyusei, score, element, style, luckyColors };
+}
+
+function updateUI(div) {
+  const { now, rokuyo, moon, pillar, tarot, kyusei, score, element, luckyColors } = div;
+
+  // Header date
+  const dateStr = `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日（${'日月火水木金土'[now.getDay()]}）`;
+  document.getElementById('headerDate').textContent = dateStr;
+
+  // Fortune bar
+  document.getElementById('fb-rokuyo').textContent = rokuyo;
+  document.getElementById('fb-moon').textContent = moon.icon + ' ' + moon.name;
+  document.getElementById('fb-kyusei').textContent = kyusei;
+  document.getElementById('fb-pillar').textContent = pillar.pillar;
+  document.getElementById('fb-tarot').textContent = tarot.n;
+  document.getElementById('fb-score').textContent = score + 'pt';
+
+  // Theme label
+  document.getElementById('themeLabel').textContent = element + '行 × ' + style === 'anime' ? 'アニメ調' : 'リアル調';
+  document.getElementById('themeLabel').textContent = `${element}行 × ${div.style === 'anime' ? 'アニメ調' : 'リアル調'}`;
+
+  // Divination grid
+  const rokuyoData = ROKUYO_AURA[rokuyo] || {};
+  const elemColor = ELEM_COLOR[element] || '#fff';
+  document.getElementById('divGrid').innerHTML = `
+    <div class="div-item">
+      <div class="div-item-label">六曜</div>
+      <div class="div-item-value" style="color:${rokuyoData.color||'#fff'}">${rokuyo}</div>
+      <div class="div-item-sub">${rokuyoData.adj || ''}な日</div>
+    </div>
+    <div class="div-item">
+      <div class="div-item-label">月相</div>
+      <div class="div-item-value" style="color:var(--violet)">${moon.icon} ${moon.name}</div>
+      <div class="div-item-sub">月齢 ${moon.age.toFixed(1)}日・${moon.energy}</div>
+    </div>
+    <div class="div-item">
+      <div class="div-item-label">五行エレメント</div>
+      <div class="div-item-value" style="color:${elemColor}">${element}</div>
+      <div class="div-item-sub">${ELEM_ENG[element]?.split(',')[0] || ''}</div>
+    </div>
+    <div class="div-item">
+      <div class="div-item-label">タロット</div>
+      <div class="div-item-value" style="color:var(--rose)">${tarot.n}</div>
+      <div class="div-item-sub">${tarot.eng.split(',')[0]}</div>
+    </div>
+    <div class="div-item">
+      <div class="div-item-label">四柱推命 日柱</div>
+      <div class="div-item-value">${pillar.pillar}</div>
+      <div class="div-item-sub">${pillar.stem}干・${element}性</div>
+    </div>
+    <div class="div-item">
+      <div class="div-item-label">九星気学</div>
+      <div class="div-item-value" style="color:var(--gold)">${kyusei}</div>
+      <div class="div-item-sub">今日の運気 ${score}pt</div>
+    </div>
+  `;
+
+  // Lucky colors palette
+  const paletteRow = document.getElementById('paletteRow');
+  paletteRow.innerHTML = `<span class="palette-label">ラッキーカラー</span>`;
+  luckyColors.forEach(c => {
+    const swatch = document.createElement('div');
+    swatch.className = 'palette-swatch';
+    swatch.style.background = c.hex;
+    swatch.title = c.name;
+    paletteRow.appendChild(swatch);
+    const label = document.createElement('span');
+    label.className = 'palette-color-name';
+    label.textContent = c.name;
+    paletteRow.appendChild(label);
+  });
+
+  // Lucky tags
+  const tags = [
+    { label: `🌿 ${element}行`, color: ELEM_COLOR[element] },
+    { label: `📅 ${rokuyo}`, color: rokuyoData.color || '#ccc' },
+    { label: `${moon.icon} ${moon.name}`, color: '#a78bfa' },
+    { label: `🃏 ${tarot.n}`, color: '#f49aad' },
+    { label: `⭐ ${kyusei}`, color: '#e8c96a' },
+  ];
+  document.getElementById('luckyTags').innerHTML = tags.map(t =>
+    `<span class="lucky-tag" style="color:${t.color};border-color:${t.color}33;background:${t.color}11">${t.label}</span>`
+  ).join('');
+}
+
+// ════════════════════════════════════════
+//  IMAGE GENERATION
+// ════════════════════════════════════════
+// ── サンドボックス検出 ──
+// Claude.aiプレビューのみ検出。GitHub Pages等の実ブラウザでは動作させる
+function generateImage(promptData, seed) {
+  const loading   = document.getElementById('loadingOverlay');
+  const img       = document.getElementById('mainImg');
+  const errorDiv  = document.getElementById('errorState');
+  const dlBtn     = document.getElementById('dlBtn');
+  const regenBtn  = document.getElementById('regenBtn');
+  const hint      = document.getElementById('loadingPromptHint');
+
+  // ── UIリセット ──
+  loading.classList.remove('hidden');
+  errorDiv.style.display = 'none';
+  img.classList.remove('loaded');
+  img.src = '';
+  dlBtn.disabled    = true;
+  regenBtn.disabled = true;
+  isGenerating = true;
+
+  document.getElementById('promptText').textContent = promptData.prompt;
+
+  // ── 五行別・短いプロンプト（確実動作） ──
+  const SHORT_PROMPTS = {
+    '木': 'beautiful anime girl spring cherry blossoms green nature long dark hair masterpiece',
+    '火': 'beautiful anime girl summer sunlight warm orange glow long dark hair masterpiece',
+    '土': 'beautiful japanese girl autumn golden leaves warm light long dark hair masterpiece',
+    '金': 'beautiful japanese girl winter snow silver light elegant long dark hair masterpiece',
+    '水': 'beautiful anime girl moonlit night blue dreamy water long dark hair masterpiece',
+  };
+  const elem = promptData.theme.split('・')[0] || '水';
+  const shortPrompt = SHORT_PROMPTS[elem] || SHORT_PROMPTS['水'];
+  const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(shortPrompt)}?width=512&height=768&seed=${seed}&nologo=true&model=flux`;
+  currentImageUrl = url;
+
+  hint.textContent = `テーマ: ${promptData.theme} | 生成中…`;
+
+  // ── カウンター ──
+  let secs = 0;
+  const counter = setInterval(() => {
+    secs++;
+    hint.textContent = `生成中 ${secs}秒… テーマ: ${promptData.theme}`;
+  }, 1000);
+
+  const done = (success, blobUrl) => {
+    clearInterval(counter);
+    isGenerating = false;
+    regenBtn.disabled = false;
+    if(success && blobUrl) {
+      img.onload = () => {
+        img.classList.add('loaded');
+        loading.classList.add('hidden');
+        dlBtn.disabled = false;
+        saveToHistory(promptData, url); // 履歴にはオリジナルURL保存
+      };
+      img.src = blobUrl;
+    } else {
+      loading.classList.add('hidden');
+      errorDiv.style.display = 'flex';
+    }
+  };
+
+  // ── fetch で画像を取得（iOS Safari で最も確実な方法） ──
+  const tryFetch = (fetchUrl, fallback) => {
+    fetch(fetchUrl)
+      .then(res => {
+        if(!res.ok) throw new Error('HTTP ' + res.status);
+        return res.blob();
+      })
+      .then(blob => {
+        if(!blob.type.startsWith('image/')) throw new Error('Not image');
+        const blobUrl = URL.createObjectURL(blob);
+        done(true, blobUrl);
+      })
+      .catch(err => {
+        console.warn('fetch failed:', err);
+        if(fallback) {
+          // フォールバック：最短プロンプト
+          const fp = `https://image.pollinations.ai/prompt/${encodeURIComponent('cute anime girl soft light stars')}?width=512&height=768&seed=${seed}&nologo=true`;
+          currentImageUrl = fp;
+          tryFetch(fp, false);
+        } else {
+          done(false, null);
+        }
+      });
+  };
+
+  // タイムアウト（fetchは自動でタイムアウトしないためAbortControllerで制御）
+  const controller = new AbortController();
+  setTimeout(() => controller.abort(), 50000);
+
+  fetch(url, { signal: controller.signal })
+    .then(res => {
+      if(!res.ok) throw new Error('HTTP ' + res.status);
+      return res.blob();
+    })
+    .then(blob => {
+      if(!blob.type.startsWith('image/')) throw new Error('Not image');
+      const blobUrl = URL.createObjectURL(blob);
+      done(true, blobUrl);
+    })
+    .catch(err => {
+      console.warn('Primary fetch failed:', err.name, err.message);
+      if(err.name === 'AbortError') {
+        done(false, null);
+        return;
+      }
+      // フォールバック
+      const fp = `https://image.pollinations.ai/prompt/${encodeURIComponent('cute anime girl soft light stars')}?width=512&height=768&seed=${seed}&nologo=true`;
+      currentImageUrl = fp;
+      fetch(fp)
+        .then(r => r.blob())
+        .then(b => { const bu = URL.createObjectURL(b); done(true, bu); })
+        .catch(() => done(false, null));
+    });
+}
+
+function getDailySeed(div) {
+  const d = div.now;
+  return d.getFullYear() * 10000 + (d.getMonth()+1) * 100 + d.getDate();
+}
+
+function regenerate() {
+  if(isGenerating) return;
+  if(!currentDiv) return;
+  const seed = getDailySeed(currentDiv) + Math.floor(Math.random() * 1000);
+  const promptData = buildPrompt(currentDiv);
+  currentPromptData = promptData;
+  generateImage(promptData, seed);
+}
+
+// ════════════════════════════════════════
+//  DOWNLOAD
+// ════════════════════════════════════════
+function downloadImage() {
+  if(!currentImageUrl) return;
+  const d = currentDiv ? currentDiv.now : new Date();
+  const filename = `lucky-girl-${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}.jpg`;
+  // Pollinations.aiはCORSを許可していないため、新しいタブで開く
+  // ユーザーが長押し保存できる
+  const win = window.open(currentImageUrl, '_blank');
+  if(!win) {
+    // ポップアップブロックされた場合はリンクを作成
+    const a = document.createElement('a');
+    a.href = currentImageUrl;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.click();
+  }
+}
+
+// ════════════════════════════════════════
+//  HISTORY (localStorage)
+// ════════════════════════════════════════
+const HISTORY_KEY = 'luckyGirlHistory';
+const MAX_HISTORY = 30;
+
+function saveToHistory(promptData, imageUrl) {
+  const d = currentDiv.now;
+  const dateKey = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  try {
+    const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+    // Remove existing entry for same date
+    const filtered = history.filter(h => h.date !== dateKey);
+    filtered.unshift({
+      date: dateKey,
+      theme: promptData.theme,
+      url: imageUrl,
+      score: currentDiv.score,
+      rokuyo: currentDiv.rokuyo,
+    });
+    // Keep latest MAX_HISTORY
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(filtered.slice(0, MAX_HISTORY)));
+    renderHistory();
+  } catch(e) { console.warn('History save failed:', e); }
+}
+
+function loadHistory() {
+  try {
+    return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+  } catch(e) { return []; }
+}
+
+function renderHistory() {
+  const history = loadHistory();
+  const grid = document.getElementById('historyGrid');
+  if(history.length === 0) {
+    grid.innerHTML = '<div class="no-history" style="grid-column:1/-1">まだ履歴がありません</div>';
+    return;
+  }
+  grid.innerHTML = history.slice(0, 12).map((h, i) => {
+    const dateLabel = h.date ? h.date.slice(5).replace('-', '/') : '—';
+    return `
+    <div class="hist-item" onclick="openModal('${encodeURIComponent(h.url)}','${encodeURIComponent(h.date)}','${encodeURIComponent(h.theme)}')">
+      <img class="hist-img" src="${h.url}" loading="lazy" onerror="this.style.opacity='.2'">
+      <div class="hist-overlay">
+        <div class="hist-date">${dateLabel}</div>
+        <div class="hist-theme">${h.rokuyo || ''} ${h.score ? h.score+'pt' : ''}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ════════════════════════════════════════
+//  MODAL
+// ════════════════════════════════════════
+function openModal(urlEnc, dateEnc, themeEnc) {
+  document.getElementById('modalImg').src = decodeURIComponent(urlEnc);
+  document.getElementById('modalDate').textContent = decodeURIComponent(dateEnc);
+  document.getElementById('modalTheme').textContent = decodeURIComponent(themeEnc);
+  document.getElementById('histModal').classList.add('open');
+}
+function closeModal(e) {
+  if(!e || e.target === document.getElementById('histModal')) {
+    document.getElementById('histModal').classList.remove('open');
+  }
+}
+
+// ════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════
+function init() {
+  try {
+    const div = computeToday();
+    currentDiv = div;
+    updateUI(div);
+    renderHistory();
+
+    const d = div.now;
+    const todayKey = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    const history = loadHistory();
+    const todayEntry = history.find(h => h.date === todayKey);
+    const promptData = buildPrompt(div);
+    currentPromptData = promptData;
+    document.getElementById('promptText').textContent = promptData.prompt;
+
+    if(todayEntry) {
+      const img     = document.getElementById('mainImg');
+      const loading = document.getElementById('loadingOverlay');
+      currentImageUrl = todayEntry.url;
+      document.getElementById('loadingPromptHint').textContent = 'キャッシュから読み込み中…';
+      img.onload  = () => { img.classList.add('loaded'); loading.classList.add('hidden'); document.getElementById('dlBtn').disabled = false; };
+      img.onerror = () => { generateImage(promptData, getDailySeed(div)); };
+      img.src = todayEntry.url;
+    } else {
+      generateImage(promptData, getDailySeed(div));
+    }
+  } catch(e) {
+    console.warn('Init error:', e);
+  }
+}
+
+// グローバルエラーハンドラ（予期しないScriptエラーを抑制）
+window.onerror = (msg) => {
+  if(typeof msg === 'string' && msg.includes('Script error')) return true;
+  return false;
+};
+window.onunhandledrejection = (e) => { console.warn('Unhandled rejection:', e.reason); };
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
