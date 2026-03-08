@@ -25,9 +25,7 @@
     --green:  #6ee7b7;
     --sakura: #ffd6e0;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     background: var(--ink);
     color: var(--text);
@@ -35,8 +33,6 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
-
-  /* ── Star background ── */
   body::before {
     content: '';
     position: fixed; inset: 0;
@@ -46,7 +42,6 @@
       radial-gradient(ellipse at 50% 50%, rgba(232,201,106,.06) 0%, transparent 70%);
     pointer-events: none; z-index: 0;
   }
-
   .stars {
     position: fixed; inset: 0; pointer-events: none; z-index: 0;
     background-image:
@@ -62,581 +57,158 @@
       radial-gradient(2px 2px at 65% 50%, rgba(167,139,250,.4), transparent),
       radial-gradient(1.5px 1.5px at 25% 55%, rgba(244,154,173,.5), transparent);
   }
-
   .wrap { position: relative; z-index: 1; max-width: 520px; margin: 0 auto; padding: 0 16px 80px; }
-
-  /* ── Header ── */
-  header {
-    text-align: center;
-    padding: 40px 0 28px;
-    position: relative;
-  }
-  .header-subtitle {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: .62rem;
-    letter-spacing: .3em;
-    color: var(--gold);
-    margin-bottom: 10px;
-    opacity: .85;
-  }
-  .header-title {
-    font-family: 'Shippori Mincho', serif;
-    font-size: 1.7rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 50%, var(--violet) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1.3;
-    margin-bottom: 6px;
-  }
-  .header-date {
-    font-size: .75rem;
-    color: var(--muted);
-    letter-spacing: .1em;
-  }
-
-  /* ── Today Fortune Bar ── */
-  .fortune-bar {
-    background: var(--glass);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 14px 18px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 14px;
-    align-items: center;
-    backdrop-filter: blur(8px);
-  }
-  .fb-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-  }
+  header { text-align: center; padding: 40px 0 28px; position: relative; }
+  .header-subtitle { font-family: 'Cinzel Decorative', serif; font-size: .62rem; letter-spacing: .3em; color: var(--gold); margin-bottom: 10px; opacity: .85; }
+  .header-title { font-family: 'Shippori Mincho', serif; font-size: 1.7rem; font-weight: 700; background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 50%, var(--violet) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1.3; margin-bottom: 6px; }
+  .header-date { font-size: .75rem; color: var(--muted); letter-spacing: .1em; }
+  .fortune-bar { background: var(--glass); border: 1px solid var(--border); border-radius: 16px; padding: 14px 18px; margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; backdrop-filter: blur(8px); }
+  .fb-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
   .fb-label { font-size: .58rem; color: var(--muted); letter-spacing: .08em; }
   .fb-value { font-size: .8rem; font-weight: 700; color: var(--text); }
   .fb-value.gold { color: var(--gold); }
   .fb-value.rose { color: var(--rose); }
   .fb-value.violet { color: var(--violet); }
   .fb-value.green { color: var(--green); }
-
-  /* ── Main image card ── */
-  .image-card {
-    background: linear-gradient(145deg, rgba(26,23,48,.9), rgba(18,16,42,.95));
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    overflow: hidden;
-    margin-bottom: 20px;
-    position: relative;
-  }
-
-  .image-header {
-    padding: 16px 20px 12px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  .image-card { background: linear-gradient(145deg, rgba(26,23,48,.9), rgba(18,16,42,.95)); border: 1px solid var(--border); border-radius: 24px; overflow: hidden; margin-bottom: 20px; position: relative; }
+  .image-header { padding: 16px 20px 12px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
   .image-header-left { display: flex; align-items: center; gap: 8px; }
-  .image-header-label {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: .6rem;
-    letter-spacing: .2em;
-    color: var(--gold);
-  }
-  .image-theme-badge {
-    font-size: .68rem;
-    background: rgba(232,201,106,.12);
-    border: 1px solid rgba(232,201,106,.25);
-    color: var(--gold);
-    padding: 2px 10px;
-    border-radius: 20px;
-  }
-
-  .image-wrap {
-    position: relative;
-    width: 100%;
-    min-height: 400px;
-    background: linear-gradient(180deg, rgba(30,20,50,.8) 0%, rgba(10,8,25,.9) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .main-image {
-    width: 100%;
-    max-height: 520px;
-    object-fit: cover;
-    display: block;
-    opacity: 0;
-    transition: opacity .8s ease;
-  }
+  .image-header-label { font-family: 'Cinzel Decorative', serif; font-size: .6rem; letter-spacing: .2em; color: var(--gold); }
+  .image-theme-badge { font-size: .68rem; background: rgba(232,201,106,.12); border: 1px solid rgba(232,201,106,.25); color: var(--gold); padding: 2px 10px; border-radius: 20px; }
+  .image-wrap { position: relative; width: 100%; min-height: 400px; background: linear-gradient(180deg, rgba(30,20,50,.8) 0%, rgba(10,8,25,.9) 100%); display: flex; align-items: center; justify-content: center; }
+  .main-image { width: 100%; max-height: 520px; object-fit: cover; display: block; opacity: 0; transition: opacity .8s ease; }
   .main-image.loaded { opacity: 1; }
-
-  .loading-overlay {
-    position: absolute; inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    background: rgba(13,11,26,.85);
-    transition: opacity .5s ease;
-  }
+  .loading-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; background: rgba(13,11,26,.85); transition: opacity .5s ease; }
   .loading-overlay.hidden { opacity: 0; pointer-events: none; }
-
-  .loading-icon {
-    width: 56px; height: 56px;
-    border: 2px solid rgba(232,201,106,.2);
-    border-top-color: var(--gold);
-    border-radius: 50%;
-    animation: spin 1.2s linear infinite;
-  }
+  .loading-icon { width: 56px; height: 56px; border: 2px solid rgba(232,201,106,.2); border-top-color: var(--gold); border-radius: 50%; animation: spin 1.2s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
-  .loading-text {
-    font-family: 'Shippori Mincho', serif;
-    font-size: .8rem;
-    color: var(--gold);
-    letter-spacing: .15em;
-    animation: pulse 2s ease-in-out infinite;
-  }
+  .loading-text { font-family: 'Shippori Mincho', serif; font-size: .8rem; color: var(--gold); letter-spacing: .15em; animation: pulse 2s ease-in-out infinite; }
   .loading-sub { font-size: .68rem; color: var(--muted); letter-spacing: .06em; }
   @keyframes pulse { 0%,100%{opacity:.6} 50%{opacity:1} }
-
-  /* Error state */
-  .error-state {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 60px 20px;
-    text-align: center;
-  }
+  .error-state { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 60px 20px; text-align: center; }
   .error-icon { font-size: 2.4rem; }
   .error-msg { font-size: .82rem; color: var(--muted); line-height: 1.7; }
-
-  /* ── Prompt reveal ── */
-  .prompt-section {
-    padding: 12px 20px 16px;
-    border-top: 1px solid var(--border);
-  }
-  .prompt-label {
-    font-size: .6rem;
-    letter-spacing: .12em;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-  .prompt-text {
-    font-size: .7rem;
-    color: rgba(255,255,255,.45);
-    line-height: 1.6;
-    font-style: italic;
-  }
-
-  /* ── Action buttons ── */
-  .action-row {
-    display: flex;
-    gap: 10px;
-    padding: 0 20px 20px;
-  }
-  .btn {
-    flex: 1;
-    border: none;
-    border-radius: 12px;
-    padding: 12px 8px;
-    font-size: .78rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all .2s ease;
-    letter-spacing: .06em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-  }
+  .prompt-section { padding: 12px 20px 16px; border-top: 1px solid var(--border); }
+  .prompt-label { font-size: .6rem; letter-spacing: .12em; color: var(--muted); margin-bottom: 6px; }
+  .prompt-text { font-size: .7rem; color: rgba(255,255,255,.45); line-height: 1.6; font-style: italic; word-break: break-all; }
+  .action-row { display: flex; gap: 10px; padding: 0 20px 20px; }
+  .btn { flex: 1; border: none; border-radius: 12px; padding: 12px 8px; font-size: .78rem; font-weight: 700; cursor: pointer; transition: all .2s ease; letter-spacing: .06em; display: flex; align-items: center; justify-content: center; gap: 6px; }
   .btn:active { transform: scale(.97); }
-  .btn-regen {
-    background: linear-gradient(135deg, rgba(167,139,250,.2), rgba(244,154,173,.2));
-    border: 1px solid rgba(167,139,250,.35);
-    color: var(--violet);
-  }
+  .btn-regen { background: linear-gradient(135deg, rgba(167,139,250,.2), rgba(244,154,173,.2)); border: 1px solid rgba(167,139,250,.35); color: var(--violet); }
   .btn-regen:hover { background: linear-gradient(135deg, rgba(167,139,250,.3), rgba(244,154,173,.3)); }
-  .btn-dl {
-    background: linear-gradient(135deg, rgba(232,201,106,.2), rgba(110,231,183,.15));
-    border: 1px solid rgba(232,201,106,.35);
-    color: var(--gold);
-  }
+  .btn-dl { background: linear-gradient(135deg, rgba(232,201,106,.2), rgba(110,231,183,.15)); border: 1px solid rgba(232,201,106,.35); color: var(--gold); }
   .btn-dl:hover { background: linear-gradient(135deg, rgba(232,201,106,.3), rgba(110,231,183,.25)); }
   .btn:disabled { opacity: .45; cursor: not-allowed; }
-
-  /* ── Divination result ── */
-  .div-card {
-    background: var(--glass);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 16px 18px;
-    margin-bottom: 20px;
-    backdrop-filter: blur(8px);
-  }
-  .div-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: .6rem;
-    letter-spacing: .2em;
-    color: var(--gold);
-    margin-bottom: 14px;
-    text-align: center;
-  }
-  .div-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .div-item {
-    background: rgba(255,255,255,.04);
-    border: 1px solid rgba(255,255,255,.07);
-    border-radius: 10px;
-    padding: 10px 12px;
-  }
+  .div-card { background: var(--glass); border: 1px solid var(--border); border-radius: 18px; padding: 16px 18px; margin-bottom: 20px; backdrop-filter: blur(8px); }
+  .div-title { font-family: 'Cinzel Decorative', serif; font-size: .6rem; letter-spacing: .2em; color: var(--gold); margin-bottom: 14px; text-align: center; }
+  .div-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .div-item { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-radius: 10px; padding: 10px 12px; }
   .div-item-label { font-size: .58rem; color: var(--muted); margin-bottom: 4px; letter-spacing: .06em; }
   .div-item-value { font-size: .82rem; font-weight: 700; }
   .div-item-sub { font-size: .62rem; color: var(--muted); margin-top: 2px; line-height: 1.4; }
-
-  /* ── Color palette ── */
-  .palette-row {
-    display: flex;
-    gap: 8px;
-    margin-top: 12px;
-    align-items: center;
-  }
+  .palette-row { display: flex; gap: 8px; margin-top: 12px; align-items: center; }
   .palette-label { font-size: .62rem; color: var(--muted); }
-  .palette-swatch {
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    border: 2px solid rgba(255,255,255,.15);
-    box-shadow: 0 0 8px rgba(0,0,0,.4);
-  }
+  .palette-swatch { width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(255,255,255,.15); box-shadow: 0 0 8px rgba(0,0,0,.4); }
   .palette-color-name { font-size: .65rem; color: rgba(255,255,255,.5); }
-
-  /* ── History ── */
   .history-section { margin-top: 8px; }
-  .history-title {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: .65rem;
-    letter-spacing: .2em;
-    color: var(--muted);
-    text-align: center;
-    margin-bottom: 14px;
-  }
-  .history-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-  }
-  .hist-item {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    aspect-ratio: 2/3;
-    background: var(--deep);
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: transform .2s ease;
-  }
+  .history-title { font-family: 'Cinzel Decorative', serif; font-size: .65rem; letter-spacing: .2em; color: var(--muted); text-align: center; margin-bottom: 14px; }
+  .history-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .hist-item { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 2/3; background: var(--deep); border: 1px solid var(--border); cursor: pointer; transition: transform .2s ease; }
   .hist-item:hover { transform: scale(1.03); }
   .hist-img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .hist-overlay {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    background: linear-gradient(transparent, rgba(13,11,26,.9));
-    padding: 16px 6px 6px;
-  }
+  .hist-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(13,11,26,.9)); padding: 16px 6px 6px; }
   .hist-date { font-size: .55rem; color: var(--gold); letter-spacing: .06em; text-align: center; }
   .hist-theme { font-size: .5rem; color: var(--muted); text-align: center; }
-
-  /* ── Modal ── */
-  .modal-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,.85);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.85); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
   .modal-overlay.open { display: flex; }
-  .modal-inner {
-    max-width: 420px; width: 100%;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-  }
+  .modal-inner { max-width: 420px; width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
   .modal-img { width: 100%; display: block; }
   .modal-info { padding: 14px 16px; }
   .modal-date { font-size: .7rem; color: var(--gold); margin-bottom: 4px; }
   .modal-theme { font-size: .75rem; color: var(--muted); margin-bottom: 10px; }
-  .modal-close {
-    width: 100%;
-    padding: 10px;
-    background: rgba(255,255,255,.06);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    font-size: .8rem;
-    cursor: pointer;
-  }
-
-  /* ── API Key Settings ── */
-  .settings-toggle {
-    text-align: center; margin-bottom: 10px;
-  }
-  .settings-toggle-btn {
-    background: none; border: 1px solid var(--border);
-    color: var(--muted); font-size: .65rem; padding: 5px 14px;
-    border-radius: 20px; cursor: pointer; letter-spacing: .08em;
-  }
-  .settings-panel {
-    background: rgba(255,255,255,.04);
-    border: 1px solid var(--border);
-    border-radius: 14px; padding: 14px 16px;
-    margin-bottom: 16px; display: none;
-  }
+  .modal-close { width: 100%; padding: 10px; background: rgba(255,255,255,.06); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: .8rem; cursor: pointer; }
+  .settings-toggle { text-align: center; margin-bottom: 10px; }
+  .settings-toggle-btn { background: none; border: 1px solid var(--border); color: var(--muted); font-size: .65rem; padding: 5px 14px; border-radius: 20px; cursor: pointer; letter-spacing: .08em; }
+  .settings-panel { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; margin-bottom: 16px; display: none; }
   .settings-panel.open { display: block; }
   .settings-label { font-size: .62rem; color: var(--muted); margin-bottom: 6px; display: block; }
-  .settings-input {
-    width: 100%; padding: 8px 12px;
-    background: rgba(255,255,255,.06);
-    border: 1px solid var(--border); border-radius: 8px;
-    color: var(--text); font-size: .74rem; outline: none;
-    font-family: monospace;
-  }
-  .settings-hint {
-    font-size: .6rem; color: var(--muted); margin-top: 6px; line-height: 1.6;
-  }
+  .settings-input { width: 100%; padding: 8px 12px; background: rgba(255,255,255,.06); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: .74rem; outline: none; font-family: monospace; }
+  .settings-hint { font-size: .6rem; color: var(--muted); margin-top: 6px; line-height: 1.6; }
   .settings-hint a { color: var(--violet); }
-  .settings-save-btn {
-    margin-top: 8px; padding: 7px 16px;
-    background: linear-gradient(135deg, rgba(167,139,250,.25), rgba(244,154,173,.2));
-    border: 1px solid rgba(167,139,250,.4); border-radius: 8px;
-    color: var(--violet); font-size: .72rem; cursor: pointer;
-  }
-
-  /* ── History del button ── */
-  .hist-del {
-    position: absolute; top: 5px; right: 5px;
-    width: 22px; height: 22px; border-radius: 50%;
-    background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.2);
-    color: #fff; font-size: .7rem; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    line-height: 1; padding: 0;
-  }
-
-  /* ── Tab switcher ── */
-  .tab-row {
-    display: flex; gap: 0;
-    background: rgba(255,255,255,.04);
-    border: 1px solid var(--border);
-    border-radius: 14px; overflow: hidden;
-    margin-bottom: 16px;
-  }
-  .tab-btn {
-    flex: 1; padding: 10px 4px;
-    background: none; border: none;
-    color: var(--muted); font-size: .72rem;
-    cursor: pointer; transition: all .2s;
-    letter-spacing: .03em;
-  }
-  .tab-btn.active {
-    background: linear-gradient(135deg,rgba(167,139,250,.3),rgba(244,154,173,.2));
-    color: var(--text); font-weight: 700;
-  }
-
-  /* ── Free prompt panel ── */
+  .settings-save-btn { margin-top: 8px; padding: 7px 16px; background: linear-gradient(135deg, rgba(167,139,250,.25), rgba(244,154,173,.2)); border: 1px solid rgba(167,139,250,.4); border-radius: 8px; color: var(--violet); font-size: .72rem; cursor: pointer; }
+  .hist-del { position: absolute; top: 5px; right: 5px; width: 22px; height: 22px; border-radius: 50%; background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.2); color: #fff; font-size: .7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; padding: 0; }
+  .tab-row { display: flex; gap: 0; background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 16px; }
+  .tab-btn { flex: 1; padding: 10px 4px; background: none; border: none; color: var(--muted); font-size: .72rem; cursor: pointer; transition: all .2s; letter-spacing: .03em; }
+  .tab-btn.active { background: linear-gradient(135deg,rgba(167,139,250,.3),rgba(244,154,173,.2)); color: var(--text); font-weight: 700; }
   .panel { display: none; }
   .panel.active { display: block; }
   .free-section { padding: 0 0 16px; }
-  .free-textarea {
-    width: 100%; min-height: 90px; padding: 10px 12px;
-    background: rgba(255,255,255,.05);
-    border: 1px solid var(--border); border-radius: 10px;
-    color: var(--text); font-size: .74rem; line-height: 1.5;
-    resize: vertical; font-family: 'Noto Sans JP',sans-serif;
-    outline: none; margin-bottom: 8px;
-  }
+  .free-textarea { width: 100%; min-height: 90px; padding: 10px 12px; background: rgba(255,255,255,.05); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: .74rem; line-height: 1.5; resize: vertical; font-family: 'Noto Sans JP',sans-serif; outline: none; margin-bottom: 8px; }
   .free-textarea:focus { border-color: rgba(167,139,250,.5); }
   .free-neg-label { font-size: .6rem; color: var(--muted); margin-bottom: 4px; display: block; }
-  .free-gen-btn {
-    width: 100%; padding: 12px;
-    background: linear-gradient(135deg,rgba(110,231,183,.25),rgba(56,189,248,.2));
-    border: 1px solid rgba(110,231,183,.4); border-radius: 12px;
-    color: var(--green); font-size: .8rem; font-weight: 700;
-    cursor: pointer; letter-spacing: .06em;
-  }
-
-  /* ── img2img panel ── */
+  .free-gen-btn { width: 100%; padding: 12px; background: linear-gradient(135deg,rgba(110,231,183,.25),rgba(56,189,248,.2)); border: 1px solid rgba(110,231,183,.4); border-radius: 12px; color: var(--green); font-size: .8rem; font-weight: 700; cursor: pointer; letter-spacing: .06em; }
   .img2img-section { padding: 0 0 16px; }
-  .upload-zone {
-    border: 2px dashed rgba(167,139,250,.35);
-    border-radius: 14px; padding: 24px 16px;
-    text-align: center; cursor: pointer;
-    background: rgba(167,139,250,.05);
-    transition: all .2s; margin-bottom: 12px;
-  }
+  .upload-zone { border: 2px dashed rgba(167,139,250,.35); border-radius: 14px; padding: 24px 16px; text-align: center; cursor: pointer; background: rgba(167,139,250,.05); transition: all .2s; margin-bottom: 12px; }
   .upload-zone:hover { background: rgba(167,139,250,.1); border-color: rgba(167,139,250,.6); }
   .upload-zone input { display: none; }
   .upload-icon { font-size: 2rem; margin-bottom: 8px; }
   .upload-text { font-size: .74rem; color: var(--muted); }
-  .upload-preview {
-    width: 100%; max-height: 220px; object-fit: cover;
-    border-radius: 10px; margin-bottom: 12px; display: none;
-  }
+  .upload-preview { width: 100%; max-height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 12px; display: none; }
   .strength-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
   .strength-label { font-size: .65rem; color: var(--muted); white-space: nowrap; }
   .strength-slider { flex: 1; accent-color: var(--violet); }
   .strength-val { font-size: .72rem; color: var(--violet); min-width: 28px; text-align: right; }
-  .img2img-prompt {
-    width: 100%; min-height: 60px; padding: 10px 12px;
-    background: rgba(255,255,255,.05);
-    border: 1px solid var(--border); border-radius: 10px;
-    color: var(--text); font-size: .74rem; line-height: 1.5;
-    resize: vertical; font-family: 'Noto Sans JP',sans-serif;
-    outline: none; margin-bottom: 8px;
-  }
-  .img2img-gen-btn {
-    width: 100%; padding: 12px;
-    background: linear-gradient(135deg,rgba(244,154,173,.25),rgba(167,139,250,.2));
-    border: 1px solid rgba(244,154,173,.4); border-radius: 12px;
-    color: var(--rose); font-size: .8rem; font-weight: 700;
-    cursor: pointer; letter-spacing: .06em;
-  }
-
-  /* ── Style toggle ── */
-  .style-row {
-    display: flex; gap: 8px;
-    padding: 0 20px 14px;
-  }
-  .style-btn {
-    flex: 1; padding: 8px 4px;
-    border-radius: 10px; border: 1px solid var(--border);
-    background: rgba(255,255,255,.04);
-    color: var(--muted); font-size: .72rem;
-    cursor: pointer; transition: all .2s;
-    letter-spacing: .04em;
-  }
-  .style-btn.active-anime {
-    background: linear-gradient(135deg, rgba(167,139,250,.25), rgba(244,154,173,.2));
-    border-color: rgba(167,139,250,.5); color: var(--violet); font-weight: 700;
-  }
-  .style-btn.active-real {
-    background: linear-gradient(135deg, rgba(232,201,106,.2), rgba(110,231,183,.15));
-    border-color: rgba(232,201,106,.4); color: var(--gold); font-weight: 700;
-  }
-
-  /* ── Custom prompt ── */
-  .custom-section {
-    padding: 0 20px 16px;
-  }
-  .custom-label {
-    font-size: .6rem; letter-spacing: .12em; color: var(--muted);
-    margin-bottom: 6px; display: block;
-  }
-  .custom-input {
-    width: 100%; padding: 10px 12px;
-    background: rgba(255,255,255,.05);
-    border: 1px solid var(--border); border-radius: 10px;
-    color: var(--text); font-size: .74rem; line-height: 1.5;
-    resize: vertical; min-height: 60px; max-height: 120px;
-    font-family: 'Noto Sans JP', sans-serif;
-    outline: none;
-  }
+  .img2img-prompt { width: 100%; min-height: 60px; padding: 10px 12px; background: rgba(255,255,255,.05); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: .74rem; line-height: 1.5; resize: vertical; font-family: 'Noto Sans JP',sans-serif; outline: none; margin-bottom: 8px; }
+  .img2img-gen-btn { width: 100%; padding: 12px; background: linear-gradient(135deg,rgba(244,154,173,.25),rgba(167,139,250,.2)); border: 1px solid rgba(244,154,173,.4); border-radius: 12px; color: var(--rose); font-size: .8rem; font-weight: 700; cursor: pointer; letter-spacing: .06em; }
+  .style-row { display: flex; gap: 8px; padding: 0 20px 14px; }
+  .style-btn { flex: 1; padding: 8px 4px; border-radius: 10px; border: 1px solid var(--border); background: rgba(255,255,255,.04); color: var(--muted); font-size: .72rem; cursor: pointer; transition: all .2s; letter-spacing: .04em; }
+  .style-btn.active-anime { background: linear-gradient(135deg, rgba(167,139,250,.25), rgba(244,154,173,.2)); border-color: rgba(167,139,250,.5); color: var(--violet); font-weight: 700; }
+  .style-btn.active-real { background: linear-gradient(135deg, rgba(232,201,106,.2), rgba(110,231,183,.15)); border-color: rgba(232,201,106,.4); color: var(--gold); font-weight: 700; }
+  .custom-section { padding: 0 20px 16px; }
+  .custom-label { font-size: .6rem; letter-spacing: .12em; color: var(--muted); margin-bottom: 6px; display: block; }
+  .custom-input { width: 100%; padding: 10px 12px; background: rgba(255,255,255,.05); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-size: .74rem; line-height: 1.5; resize: vertical; min-height: 60px; max-height: 120px; font-family: 'Noto Sans JP', sans-serif; outline: none; }
   .custom-input:focus { border-color: rgba(167,139,250,.5); }
   .custom-hint { font-size: .6rem; color: var(--muted); margin-top: 4px; }
-
-  /* ── Animations ── */
-  @keyframes fadeUp {
-    from { opacity:0; transform: translateY(20px); }
-    to   { opacity:1; transform: translateY(0); }
-  }
+  @keyframes fadeUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
   .image-card { animation: fadeUp .6s ease both; }
   .fortune-bar { animation: fadeUp .6s .1s ease both; }
   .div-card { animation: fadeUp .6s .2s ease both; }
   .history-section { animation: fadeUp .6s .3s ease both; }
-
-  /* ── Lucky tag ── */
-  .lucky-tags {
-    display: flex; flex-wrap: wrap; gap: 6px;
-    padding: 0 20px 14px;
-  }
-  .lucky-tag {
-    font-size: .65rem;
-    padding: 3px 10px;
-    border-radius: 20px;
-    border: 1px solid;
-    letter-spacing: .04em;
-  }
-
-  /* No history */
-  .no-history {
-    text-align: center;
-    padding: 30px;
-    color: var(--muted);
-    font-size: .78rem;
-  }
+  .lucky-tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 20px 14px; }
+  .lucky-tag { font-size: .65rem; padding: 3px 10px; border-radius: 20px; border: 1px solid; letter-spacing: .04em; }
+  .no-history { text-align: center; padding: 30px; color: var(--muted); font-size: .78rem; }
+  /* 生成ステータスバー */
+  .gen-status { font-size: .72rem; color: var(--gold); text-align: center; padding: 6px 12px; background: rgba(232,201,106,.08); border-radius: 8px; margin: 0 20px 12px; display: none; }
+  .gen-status.show { display: block; }
 </style>
 </head>
 <body>
 <div class="stars"></div>
 <div class="wrap">
 
-  <!-- Header -->
   <header>
     <div class="header-subtitle">DAILY FORTUNE GIRL</div>
     <div class="header-title">運気の女神</div>
     <div class="header-date" id="headerDate">—</div>
   </header>
 
-  <!-- Fortune Bar -->
   <div class="fortune-bar" id="fortuneBar">
-    <div class="fb-item">
-      <span class="fb-label">六曜</span>
-      <span class="fb-value gold" id="fb-rokuyo">—</span>
-    </div>
-    <div class="fb-item">
-      <span class="fb-label">月齢</span>
-      <span class="fb-value violet" id="fb-moon">—</span>
-    </div>
-    <div class="fb-item">
-      <span class="fb-label">九星</span>
-      <span class="fb-value" id="fb-kyusei">—</span>
-    </div>
-    <div class="fb-item">
-      <span class="fb-label">日柱</span>
-      <span class="fb-value rose" id="fb-pillar">—</span>
-    </div>
-    <div class="fb-item">
-      <span class="fb-label">タロット</span>
-      <span class="fb-value" id="fb-tarot">—</span>
-    </div>
-    <div class="fb-item">
-      <span class="fb-label">運気</span>
-      <span class="fb-value green" id="fb-score">—</span>
-    </div>
+    <div class="fb-item"><span class="fb-label">六曜</span><span class="fb-value gold" id="fb-rokuyo">—</span></div>
+    <div class="fb-item"><span class="fb-label">月齢</span><span class="fb-value violet" id="fb-moon">—</span></div>
+    <div class="fb-item"><span class="fb-label">九星</span><span class="fb-value" id="fb-kyusei">—</span></div>
+    <div class="fb-item"><span class="fb-label">日柱</span><span class="fb-value rose" id="fb-pillar">—</span></div>
+    <div class="fb-item"><span class="fb-label">タロット</span><span class="fb-value" id="fb-tarot">—</span></div>
+    <div class="fb-item"><span class="fb-label">運気</span><span class="fb-value green" id="fb-score">—</span></div>
   </div>
 
-  <!-- Main Image Card -->
   <div class="image-card" id="imageCard">
     <div class="image-header">
-      <div class="image-header-left">
-        <span class="image-header-label">TODAY'S ORACLE</span>
-      </div>
+      <div class="image-header-left"><span class="image-header-label">TODAY'S ORACLE</span></div>
       <span class="image-theme-badge" id="themeLabel">—</span>
     </div>
-
     <div class="image-wrap">
-      <img class="main-image" id="mainImg" alt="今日の運気の女の子">
+      <!-- FIX: crossorigin="anonymous" を追加（canvas保存用） -->
+      <img class="main-image" id="mainImg" alt="今日の運気の女の子" crossorigin="anonymous">
       <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-icon"></div>
         <div class="loading-text">星が囁いています…</div>
@@ -644,66 +216,52 @@
       </div>
       <div class="error-state" id="errorState">
         <div class="error-icon">🌙</div>
-        <div class="error-msg">星の導きが届きませんでした<br><small style="color:var(--muted)">しばらく待って再生成してください</small></div>
+        <div class="error-msg">星の導きが届きませんでした<br><small style="color:var(--muted)">「再生成」を押してください</small></div>
       </div>
     </div>
 
-    <!-- Style toggle -->
     <div class="style-row">
       <button class="style-btn active-anime" id="btnAnime" onclick="setStyle('anime')">🎨 アニメ調</button>
-      <button class="style-btn" id="btnReal"  onclick="setStyle('real')">📷 リアル調</button>
+      <button class="style-btn" id="btnReal" onclick="setStyle('real')">📷 リアル調</button>
     </div>
 
-    <!-- Custom prompt -->
     <div class="custom-section">
       <label class="custom-label" for="customInput">✦ 追加リクエスト（任意）</label>
       <textarea class="custom-input" id="customInput" placeholder="例：赤いドレス、笑顔、海辺、夕日など…"></textarea>
       <div class="custom-hint">※ 入力内容が画像に反映されます</div>
     </div>
 
-    <!-- Lucky tags -->
     <div class="lucky-tags" id="luckyTags"></div>
 
-    <!-- Prompt reveal -->
     <div class="prompt-section">
       <div class="prompt-label">✦ 生成プロンプト</div>
       <div class="prompt-text" id="promptText">占い結果を解析してプロンプトを生成します…</div>
     </div>
 
-    <!-- Actions -->
     <div class="action-row">
       <button class="btn btn-regen" id="regenBtn" onclick="regenerate()">✦ 再生成</button>
       <button class="btn btn-dl" id="dlBtn" onclick="downloadImage()" disabled>↓ 保存</button>
     </div>
   </div>
 
-  <!-- Divination Details -->
   <div class="div-card" id="divCard">
     <div class="div-title">✦ 今日の鑑定詳細 ✦</div>
-    <div class="div-grid" id="divGrid">
-      <div class="div-item"><div class="div-item-label">読み込み中…</div></div>
-    </div>
-    <div class="palette-row" id="paletteRow">
-      <span class="palette-label">ラッキーカラー</span>
-    </div>
+    <div class="div-grid" id="divGrid"><div class="div-item"><div class="div-item-label">読み込み中…</div></div></div>
+    <div class="palette-row" id="paletteRow"><span class="palette-label">ラッキーカラー</span></div>
   </div>
 
-  <!-- ═══ 3モード タブ ═══ -->
   <div class="tab-row">
     <button class="tab-btn active" id="tab-oracle" onclick="switchTab('oracle')">🔮 占い生成</button>
     <button class="tab-btn" id="tab-custom" onclick="switchTab('custom')">✍️ フリー入力</button>
     <button class="tab-btn" id="tab-i2i"    onclick="switchTab('i2i')">🖼️ 画像参照</button>
   </div>
 
-  <!-- Panel: フリー入力 -->
   <div class="panel" id="panel-custom">
     <div class="free-section">
       <label class="free-neg-label">✦ 完全フリープロンプト（占いとは独立して生成）</label>
-      <textarea class="free-textarea" id="freePrompt"
-        placeholder="例: beautiful girl in red dress, sunset beach, long dark hair, smile, photorealistic, 8k..."></textarea>
+      <textarea class="free-textarea" id="freePrompt" placeholder="例: beautiful girl in red dress, sunset beach, long dark hair, smile, photorealistic, 8k..."></textarea>
       <label class="free-neg-label">ネガティブプロンプト（除外したい要素）</label>
-      <textarea class="free-textarea" id="freeNeg" style="min-height:50px"
-        placeholder="例: nsfw, blurry, ugly, bad anatomy..."></textarea>
+      <textarea class="free-textarea" id="freeNeg" style="min-height:50px" placeholder="例: nsfw, blurry, ugly, bad anatomy..."></textarea>
       <div class="style-row" style="margin-top:8px">
         <button class="style-btn active-anime" id="btnFreeAnime" onclick="setFreeStyle('anime')">🎨 アニメ調</button>
         <button class="style-btn" id="btnFreeReal" onclick="setFreeStyle('real')">📷 リアル調</button>
@@ -712,7 +270,6 @@
     </div>
   </div>
 
-  <!-- Panel: 画像参照 (img2img) -->
   <div class="panel" id="panel-i2i">
     <div class="img2img-section">
       <div class="upload-zone" onclick="document.getElementById('imgUpload').click()">
@@ -723,45 +280,35 @@
       <img class="upload-preview" id="uploadPreview">
       <div class="strength-row">
         <span class="strength-label">参照強度</span>
-        <input type="range" class="strength-slider" id="strengthSlider" min="0.3" max="0.9" step="0.05" value="0.6"
-          oninput="document.getElementById('strengthVal').textContent=this.value">
+        <input type="range" class="strength-slider" id="strengthSlider" min="0.3" max="0.9" step="0.05" value="0.6" oninput="document.getElementById('strengthVal').textContent=this.value">
         <span class="strength-val" id="strengthVal">0.6</span>
       </div>
       <label class="free-neg-label">✦ 追加プロンプト（参照画像 + この内容で生成）</label>
-      <textarea class="img2img-prompt" id="i2iPrompt"
-        placeholder="例: beautiful anime girl, long dark hair, spring, soft smile..."></textarea>
+      <textarea class="img2img-prompt" id="i2iPrompt" placeholder="例: beautiful anime girl, long dark hair, spring, soft smile..."></textarea>
       <button class="img2img-gen-btn" onclick="generateImg2Img()">🖼️ この画像を参照して生成</button>
     </div>
   </div>
 
-  <!-- API Key Settings -->
   <div class="settings-toggle">
     <button class="settings-toggle-btn" onclick="toggleSettings()">⚙ Stable Horde APIキー設定（高速化）</button>
   </div>
   <div class="settings-panel" id="settingsPanel">
     <label class="settings-label">Stable Horde APIキー（無料登録で高速化）</label>
-    <input class="settings-input" id="hordeKeyInput" type="text"
-      placeholder="例: abc123xyz... （未入力=匿名キー）"
-      value="">
+    <input class="settings-input" id="hordeKeyInput" type="text" placeholder="例: abc123xyz... （未入力=匿名キー）" value="">
     <div class="settings-hint">
       📌 <a href="https://stablehorde.net/register" target="_blank">stablehorde.net</a> で無料登録 → APIキーを取得 → ここに入力すると生成が<strong style="color:var(--green)">5〜30秒</strong>に高速化されます。<br>
-      未入力の場合は匿名キー（混み合い時は数分かかる場合あり）。<br>
       ※ 画像生成には先にPollinations.ai（3〜15秒）を試みます。
     </div>
     <button class="settings-save-btn" onclick="saveHordeKey()">💾 保存</button>
   </div>
 
-  <!-- History -->
   <div class="history-section">
     <div class="history-title">✦ ORACLE GALLERY ✦</div>
-    <div class="history-grid" id="historyGrid">
-      <div class="no-history">まだ履歴がありません</div>
-    </div>
+    <div class="history-grid" id="historyGrid"><div class="no-history">まだ履歴がありません</div></div>
   </div>
 
 </div>
 
-<!-- History Modal -->
 <div class="modal-overlay" id="histModal" onclick="closeModal(event)">
   <div class="modal-inner">
     <img class="modal-img" id="modalImg">
@@ -778,10 +325,8 @@
 //  DIVINATION ENGINE
 // ════════════════════════════════════════
 
-// Personal data
 const BIRTH = { year:1993, month:4, day:14, hour:6, zodiac:'牡羊座', blood:'B', eto:'酉' };
 
-// ── 旧暦変換（六曜の正確な計算のため）──
 const LUNAR_DATA_LG = {
   2023:{sf:[1,22],m:[30,30,29,30,29,30,29,30,29,29,30,29,30],lp:2},
   2024:{sf:[2,10],m:[30,29,30,30,29,30,29,30,29,30,29,29],lp:null},
@@ -790,13 +335,12 @@ const LUNAR_DATA_LG = {
   2027:{sf:[2,6], m:[29,30,29,30,29,30,30,29,30,30,29,29],lp:null},
   2028:{sf:[1,26],m:[30,29,30,29,30,29,30,29,30,30,30,29,29],lp:5},
 };
+
 function solarToLunarLG(sy, sm, sd) {
   const date = new Date(sy, sm-1, sd);
   let ly = sy;
   let d = LUNAR_DATA_LG[ly];
-  if(!d) { // fallback: approximate with solar month/day
-    return { month: sm, day: sd };
-  }
+  if(!d) return { month: sm, day: sd };
   let sf = new Date(ly, d.sf[0]-1, d.sf[1]);
   if(date < sf) {
     ly--; d = LUNAR_DATA_LG[ly];
@@ -815,8 +359,6 @@ function solarToLunarLG(sy, sm, sd) {
   return { month: lm, day: rem + 1 };
 }
 
-// 六曜（旧暦月日から正確に計算）
-// 旧暦1月1日=先勝 から6日周期: 先勝,友引,先負,仏滅,大安,赤口
 const ROKUYO = ['先勝','友引','先負','仏滅','大安','赤口'];
 const ROKUYO_AURA = {
   '大安': { mood:'radiant',   color:'#FFD700', adj:'祝福された',   eng:'blessed, radiant aura, golden light' },
@@ -826,15 +368,13 @@ const ROKUYO_AURA = {
   '仏滅': { mood:'mystical',  color:'#9B59B6', adj:'神秘的な',     eng:'mysterious, mystical aura, deep purple light' },
   '赤口': { mood:'intense',   color:'#FF4444', adj:'情熱的な',     eng:'intense eyes, passionate, crimson accent' },
 };
+
 function getRokuyo(date) {
   const lunar = solarToLunarLG(date.getFullYear(), date.getMonth()+1, date.getDate());
-  // 正式式: (旧暦月 + 旧暦日 - 2) % 6
   const idx = ((lunar.month + lunar.day - 2) % 6 + 6) % 6;
   return ROKUYO[idx];
 }
 
-// 月齢（JDエポック基準法・StarWalk宮崎市実測検証済み）
-// EPOCH補正: 2451549.759 (+0.5日) → 3/3=14.4日(満月) 3/5=16.4日(更待月) ✅
 function getMoonAge(ts) {
   const EPOCH_JD = 2451549.759;
   const SYNODIC  = 29.530589;
@@ -842,59 +382,42 @@ function getMoonAge(ts) {
   const frac = (((jd - EPOCH_JD) / SYNODIC) % 1 + 1) % 1;
   return { age: frac * SYNODIC };
 }
-// StarWalk準拠: その日の00:00 JST時点の月齢をround(小数1桁)
-// 実測: 3/5=16.0✅ 3/6=17.0✅
+
 function getMoonAgeJST() {
   const now = new Date();
   const jstMidnightMs = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) - 9*3600000;
   const raw = getMoonAge(jstMidnightMs).age;
   return Math.round(raw * 10) / 10;
 }
-// StarWalk 8フェーズ準拠: 更待月=Waning Gibbous(15.5-22.0)統合
+
 function getMoonPhase(age) {
   if(age <= 1.0 || age >= 28.5) return { name:'新月',     icon:'🌑', eng:'new moon magic, dark sky stars',             energy:'rebirth'      };
   if(age <= 6.5)                return { name:'三日月',   icon:'🌒', eng:'crescent moon glow, wishing star',           energy:'hope'         };
   if(age <= 8.5)                return { name:'上弦の月', icon:'🌓', eng:'half moon light, determination',             energy:'action'       };
   if(age <= 13.8)               return { name:'十三夜',   icon:'🌔', eng:'nearly full moon, magical night',            energy:'anticipation' };
   if(age <= 14.8)               return { name:'満月',     icon:'🌕', eng:'full moon glowing, moonlit night, ethereal', energy:'peak power'   };
-  // 満月境界: ±0.5日(StarWalk実測準拠)→ 3/3=14.4✅満月 3/4=14.9✅更待月
   if(age <= 22.0)               return { name:'更待月',   icon:'🌖', eng:'waning gibbous moon, silver glow, serene',   energy:'reflection'   };
   if(age <= 25.0)               return { name:'下弦の月', icon:'🌗', eng:'half moon waning, twilight release',         energy:'release'      };
                                 return { name:'有明月',   icon:'🌘', eng:'dawn moon, morning dew, delicate light',     energy:'renewal'      };
 }
-
-// ========================================
-// 九星気学 正式エンジン v2
-// 本命星 × 年盤 × 月盤 の三層構造
-// ========================================
 
 const KYUSEI_LIST = ['一白水星','二黒土星','三碧木星','四緑木星','五黄土星','六白金星','七赤金星','八白土星','九紫火星'];
 const KYUSEI_ELEMENT = {
   '一白水星':'水','二黒土星':'土','三碧木星':'木','四緑木星':'木',
   '五黄土星':'土','六白金星':'金','七赤金星':'金','八白土星':'土','九紫火星':'火'
 };
-
-// ── 本命星（生年から算出：翌節分年で計算）──
-// 晃平さん: 1993/4/14生 → 立春後なので1993年 → 桁和4 → (11-4)%9=7 → 七赤金星 ✅
-// ※ユーザー確認済み固定値
 const BIRTH_KYUSEI = '七赤金星';
 const BIRTH_KYUSEI_ELEMENT = '金';
-const BIRTH_MONTH_KYUSEI = '四緑木星'; // 月命星(4月生まれ)
+const BIRTH_MONTH_KYUSEI = '四緑木星';
 const BIRTH_MONTH_ELEMENT = '木';
 
-// ── 年盤中宮星（立春〜翌立春）──
-// オフセット+3で検証済み (2026→一白水星 ✅, 2025→五黄土星 ✅)
 function getYearBoard(now) {
-  // 立春(2/4頃)前は前年扱い
-  const y = (now.getMonth() < 1 || (now.getMonth() === 1 && now.getDate() < 4)) 
+  const y = (now.getMonth() < 1 || (now.getMonth() === 1 && now.getDate() < 4))
     ? now.getFullYear() - 1 : now.getFullYear();
   const ep = Math.floor(Date.UTC(y,0,1) / 86400000);
   return KYUSEI_LIST[(ep + 3) % 9];
 }
 
-// ── 月盤中宮星（節入り日テーブル）──
-// 各年の寅月(立春)から陰遁で毎月-1
-// グローバル節入り日テーブル (getYearPillar/getMonthPillarから参照)
 const SETSU_TABLE_M = {
   2024:[6,4,5,4,5,5,7,7,7,8,7,7],
   2025:[5,3,5,4,5,5,7,7,7,8,7,7],
@@ -904,12 +427,9 @@ const SETSU_TABLE_M = {
   2029:[5,3,5,4,5,5,7,7,7,8,7,7],
   2030:[5,4,6,5,5,6,7,8,8,8,7,7],
 };
+
 function getMonthBoard(now) {
-  const y = now.getFullYear();
-  const m = now.getMonth() + 1;
-  const d = now.getDate();
-  // ═══ keisan.site準拠・完全正確版 (2024-2030) ═══
-  // SETSU_TABLE_M → グローバル変数を使用
+  const y = now.getFullYear(), m = now.getMonth()+1, d = now.getDate();
   const TIGER_IDX_M = {'一白水星':7,'二黒土星':4,'三碧木星':1,'四緑木星':7,'五黄土星':4,'六白金星':1,'七赤金星':7,'八白土星':4,'九紫火星':1};
   const setsu = SETSU_TABLE_M[y] || SETSU_TABLE_M[2026];
   let mn = d >= setsu[m-1] ? m-1 : m-2;
@@ -918,20 +438,16 @@ function getMonthBoard(now) {
   return KYUSEI_LIST[((ti-(mn-1))%9+9)%9];
 }
 
-// ── 五行相生相剋スコア計算 ──
-// 本命星(金)と日/月/年盤の関係から総合スコアを出す
 const GOGYO_COMPAT = {
-  // 自分の五行が金の場合
   '金': { '土':10, '金':8, '水':-2, '木':-3, '火':-6 },
-  // 他の五行用（汎用）
   '水': { '金':8, '水':6, '木':-2, '土':-4, '火':-6 },
   '木': { '水':8, '木':6, '火':-2, '金':-5, '土':-3 },
   '火': { '木':8, '火':6, '土':-2, '水':-5, '金':-4 },
   '土': { '火':8, '土':6, '金':-2, '木':-4, '水':-3 },
 };
 
-// 日家九星: epochDays+5 (keisan.site実測: 3/5=三碧✅ 3/6=四緑✅)
 const KYUSEI_LIST_DAY = ['一白水星','二黒土星','三碧木星','四緑木星','五黄土星','六白金星','七赤金星','八白土星','九紫火星'];
+
 function getDayKyusei(date) {
   const ep = Math.floor(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000);
   const name = KYUSEI_LIST_DAY[(ep + 5) % 9];
@@ -942,34 +458,27 @@ function getDayKyusei(date) {
 function getKyuseiDayScore(now) {
   const yearBoard  = getYearBoard(now);
   const monthBoard = getMonthBoard(now);
-  const dayKyusei  = getDayKyusei(now); // 日家九星を追加
+  const dayKyusei  = getDayKyusei(now);
   const yElem = KYUSEI_ELEMENT[yearBoard];
   const mElem = KYUSEI_ELEMENT[monthBoard];
   const dElem = dayKyusei.elem;
-  const myElem = BIRTH_KYUSEI_ELEMENT; // '金'
+  const myElem = BIRTH_KYUSEI_ELEMENT;
   const compat = GOGYO_COMPAT[myElem] || {};
-  
-  // 年盤(重み1) + 月盤(重み2) + 日家九星(重み3) の加重平均
   const yScore = compat[yElem] || 0;
   const mScore = compat[mElem] || 0;
   const dScore = compat[dElem] || 0;
   const total  = Math.round((yScore * 1 + mScore * 2 + dScore * 3) / 6);
-  
   return { yearBoard, monthBoard, dayKyusei: dayKyusei.name, yElem, mElem, dElem, dScore, total };
 }
 
-// getDailyKyusei: UIには本命星を表示（固定軸）
 function getDailyKyusei(date) {
-  return BIRTH_KYUSEI; // '七赤金星'
+  return BIRTH_KYUSEI;
 }
 
-// 四柱推命 日柱（オフセット+17で正確な干支を算出）
-// 検証: 2026/3/3(epochDay=20515) → kanshi=(20515+17)%60=12 → 丙子 ✅
 const STEMS   = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
 const BRANCHES= ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
 const ELEM_STEM  = {甲:'木',乙:'木',丙:'火',丁:'火',戊:'土',己:'土',庚:'金',辛:'金',壬:'水',癸:'水'};
 const ELEM_ENG   = {木:'wood, nature, spring green', 火:'fire, vibrant, warm orange', 土:'earth, cozy, amber', 金:'metal, elegant, silver white', 水:'water, dreamy, blue indigo'};
-const ELEM_STYLE = {木:'anime', 火:'anime', 土:'realistic', 金:'realistic', 水:'anime'};
 const ELEM_COLOR = {木:'#6EE7B7', 火:'#F87171', 土:'#C9A84C', 金:'#E0E7FF', 水:'#38BDF8'};
 
 function getDayPillar(date) {
@@ -981,11 +490,6 @@ function getDayPillar(date) {
   return { pillar: stem+branch, stem, branch, element: ELEM_STEM[stem] };
 }
 
-// ════════════════════════════════════════
-//  生年月日五行（陰陽五行占い：日干から算出）
-//  1993/4/14 → epochDay=8504 → (8504+17)%60=1 → 乙丑 → 乙(木の陰) ✅
-//  参照: https://www.kampo-sodan.com/gogyo_uranai
-// ════════════════════════════════════════
 function getBirthElement(birthYear, birthMonth, birthDay) {
   const epochDays = Math.floor(Date.UTC(birthYear, birthMonth - 1, birthDay) / 86400000);
   const kanshi = ((epochDays + 17) % 60 + 60) % 60;
@@ -996,17 +500,9 @@ function getBirthElement(birthYear, birthMonth, birthDay) {
   const yinLabel = isYin ? '（陰・' + stem + '）' : '（陽・' + stem + '）';
   return { element: elem, stem, label, yinLabel, isYin };
 }
-// ユーザー生年月日（1993年4月14日固定）→ 乙=木の陰
+
 const BIRTH_ELEM = getBirthElement(1993, 4, 14);
 
-
-// ════════════════════════════════════════════════════════════
-//  完全占術エンジン v2.0
-//  四柱推命(年月時柱+通変星) / 西洋占星術(月星座+上昇) /
-//  紫微斗数(命宮+主星) / 算命学(天中殺) / 数秘術(個人日数)
-// ════════════════════════════════════════════════════════════
-
-// ── 四柱推命: 年柱 ──
 function getYearPillar(date) {
   const y=date.getFullYear(), m=date.getMonth()+1, d=date.getDate();
   const st=(SETSU_TABLE_M&&SETSU_TABLE_M[y])?SETSU_TABLE_M[y][1]:4;
@@ -1015,21 +511,21 @@ function getYearPillar(date) {
   return{pillar:STEMS[si]+BRANCHES[bi],stem:STEMS[si],branch:BRANCHES[bi],element:ELEM_STEM[STEMS[si]],year:adjY};
 }
 
-// ── 四柱推命: 月柱（五虎遁年起月法）──
-const GOKOTON_BASE={甲:2,己:2,乙:4,庚:4,丙:6,辛:6,丁:8,壬:8,戊:0,癸:0}; // 五虎遁正規(甲己→丙寅)
+const GOKOTON_BASE={甲:2,己:2,乙:4,庚:4,丙:6,辛:6,丁:8,壬:8,戊:0,癸:0};
+
 function getMonthPillar(date) {
   const y=date.getFullYear(),m=date.getMonth()+1,d=date.getDate();
   const setsu=(SETSU_TABLE_M&&SETSU_TABLE_M[y])||SETSU_TABLE_M[2026];
   let mn=d>=setsu[m-1]?m-1:m-2; if(mn<=0)mn+=12;
-  const bi=(mn+1)%12; // 寅月(1)→支インデックス2(寅)
+  const bi=(mn+1)%12;
   const yStem=getYearPillar(date).stem;
   const base=GOKOTON_BASE[yStem]||0;
   const si=(base+mn-1)%10;
   return{pillar:STEMS[si]+BRANCHES[bi],stem:STEMS[si],branch:BRANCHES[bi],element:ELEM_STEM[STEMS[si]],monthNum:mn};
 }
 
-// ── 四柱推命: 時柱（五鼠遁日起時法）──
 const GOSONTON_BASE={甲:0,己:0,乙:2,庚:2,丙:4,辛:4,丁:6,壬:6,戊:8,癸:8};
+
 function getHourPillar(date) {
   const h=date.getHours();
   const bi=Math.floor((h===23?0:h+1)/2)%12;
@@ -1039,9 +535,9 @@ function getHourPillar(date) {
   return{pillar:STEMS[si]+BRANCHES[bi],stem:STEMS[si],branch:BRANCHES[bi],element:ELEM_STEM[STEMS[si]]};
 }
 
-// ── 通変星 ──
 const GOGYO_GEN={木:'火',火:'土',土:'金',金:'水',水:'木'};
 const GOGYO_CON={木:'土',火:'金',土:'水',金:'木',水:'火'};
+
 function getTsuhensei(myStem, tgtStem) {
   if(!tgtStem||!ELEM_STEM[tgtStem]) return '—';
   const myE=ELEM_STEM[myStem], tgE=ELEM_STEM[tgtStem];
@@ -1056,30 +552,23 @@ function getTsuhensei(myStem, tgtStem) {
   return '—';
 }
 
-// ── 西洋占星術: 月星座（J2000基準簡易計算）──
 const ZODIAC_JP=['牡羊座','牡牛座','双子座','蟹座','獅子座','乙女座','天秤座','蠍座','射手座','山羊座','水瓶座','魚座'];
+
 function getMoonSign(date) {
   const JD=date.getTime()/86400000+2440587.5;
   const T=(JD-2451545.0)/36525;
-  const D=JD-2451545.0;
-  // 月の平均黄経
   let L=218.3164477+481267.88123421*T-0.0015786*T*T;
   const M=(357.5291092+35999.0502909*T)*(Math.PI/180);
   const Mm=(134.9633964+477198.8675055*T)*(Math.PI/180);
   const F=(93.2720950+483202.0175233*T)*(Math.PI/180);
-  // 主要補正項
-  L+= 6.289*Math.sin(Mm)
-    - 1.274*Math.sin(Mm-2*D*0.9856*Math.PI/180)
-    + 0.658*Math.sin(2*D*0.9856*Math.PI/180)
-    - 0.214*Math.sin(2*Mm)
-    - 0.186*Math.sin(M)
-    - 0.114*Math.sin(2*F);
+  L+= 6.289*Math.sin(Mm) - 1.274*Math.sin(Mm-2*(JD-2451545.0)*0.9856*Math.PI/180)
+    + 0.658*Math.sin(2*(JD-2451545.0)*0.9856*Math.PI/180)
+    - 0.214*Math.sin(2*Mm) - 0.186*Math.sin(M) - 0.114*Math.sin(2*F);
   const lon=((L%360)+360)%360;
   const idx=Math.floor(lon/30)%12;
   return{name:ZODIAC_JP[idx],lon:Math.round(lon*10)/10,deg:Math.round(lon%30*10)/10};
 }
 
-// ── 西洋占星術: 上昇星座（宮崎市 lat35.00→31.91°, lon131.42°）──
 function getAscendant(date) {
   const JD=date.getTime()/86400000+2440587.5;
   const T=(JD-2451545.0)/36525;
@@ -1094,82 +583,213 @@ function getAscendant(date) {
   return{name:ZODIAC_JP[Math.floor(asc/30)%12],deg:Math.round(asc*10)/10};
 }
 
-// ── 紫微斗数: 命宮・主星配置 ──
 const GONG_NAMES=['子宮','丑宮','寅宮','卯宮','辰宮','巳宮','午宮','未宮','申宮','酉宮','戌宮','亥宮'];
-const ZIWEI_POS={
-  2:[1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,0,0,1,1,2,2,3,3],
-  3:[1,2,3,1,2,3,4,5,6,4,5,6,7,8,9,7,8,9,10,11,0,10,11,0,1,2,3,1,2,3],
-  4:[2,3,4,5,2,3,4,5,6,7,8,9,6,7,8,9,10,11,0,1,10,11,0,1,2,3,4,5,2,3],
-  5:[2,3,4,5,6,2,3,4,5,6,7,8,9,10,7,8,9,10,11,0,1,11,0,1,2,3,4,5,6,2],
-  6:[2,3,4,5,6,7,2,3,4,5,6,7,8,9,10,11,8,9,10,11,0,1,2,3,4,5,6,7,8,2],
-};
-const KYOKU_ELEM={甲:'水',己:'水',乙:'火',庚:'火',丙:'土',辛:'土',丁:'木',壬:'木',戊:'金',癸:'金'}; // 甲己→水2,乙庚→火6,丙辛→土5,丁壬→木3,戊癸→金4
-const KYOKU_NUM={水:2,木:3,金:4,土:5,火:6}; // 水二/木三/金四/土五/火六局
 const GOKOTON_GONG={甲:0,己:0,乙:2,庚:2,丙:4,辛:4,丁:6,壬:6,戊:8,癸:8};
-const ZIWEI_STARS=['紫微','天機','','太陽','武曲','天同','','','廉貞','','','','天府','太陰','貪狼','巨門','天相','天梁','七殺','','','','','破軍'];
+
 function getZiwei(bMonth,bDay,bHour,bMin,yearStem) {
-  // ※正式計算: 旧暦生月日(3月23日)使用
-  // 1993/4/14(新暦) = 旧暦3月23日 癸酉年
-  const LUNAR_MONTH = 3; // 旧暦生月
-  const hBranchIdx=Math.floor((bHour===23?0:bHour+1)/2)%12; // 卯時=3
-  const mingIdx=((2+LUNAR_MONTH-1-hBranchIdx)%12+12)%12;    // 丑(1)
+  const LUNAR_MONTH = 3;
+  const hBranchIdx=Math.floor((bHour===23?0:bHour+1)/2)%12;
+  const mingIdx=((2+LUNAR_MONTH-1-hBranchIdx)%12+12)%12;
   const stemBase=GOKOTON_GONG[yearStem]||0;
-  const mingStemIdx=(stemBase+mingIdx)%10; // 癸(9)
+  const mingStemIdx=(stemBase+mingIdx)%10;
   const mingStem=STEMS[mingStemIdx];
-  const kyoku=KYOKU_NUM[KYOKU_ELEM[mingStem]||'木']||3; // 金四局(4)
-  // 紫微星: 旧暦23日・金四局 → 午宮(6) [参照アプリ実測値]
-  const zwGong=6; // 午宮
-  const starPos={};
-  ZIWEI_STARS.forEach((s,i)=>{ if(s) starPos[s]=(zwGong+i)%12; });
+  const zwGong=6;
   return{
     mingIdx,mingName:GONG_NAMES[mingIdx],mingStem,
-    kyoku,kyokuLabel:`金${kyoku}局`,
-    ziweiGong:zwGong,ziweiName:GONG_NAMES[zwGong],
-    stars:starPos
+    kyoku:4,kyokuLabel:'金4局',
+    ziweiGong:zwGong,ziweiName:GONG_NAMES[zwGong]
   };
 }
 
-// ── 算命学: 天中殺 ──
 const CHUKUSATSU={甲:['戌','亥'],乙:['戌','亥'],丙:['申','酉'],丁:['申','酉'],戊:['午','未'],己:['午','未'],庚:['辰','巳'],辛:['辰','巳'],壬:['寅','卯'],癸:['寅','卯']};
 function getTenchusatsu(stem){ return(CHUKUSATSU[stem]||['—','—']).join('・')+'空亡'; }
 
-// ── 数秘術: 個人日数 ──
-const NUMEROLOGY_MEANING={1:'開拓と独立',2:'協調と直感',3:'創造と表現',4:'安定と努力',5:'変化と自由',6:'調和と責任',7:'分析と精神性',8:'力と達成',9:'完成と慈愛',11:'直感の光',22:'大いなる建設者',33:'愛の師'};
-function getNumerologyDay(date) {
-  // 個人日数 = ライフパス(4) + 今月 + 今日
-  // ライフパス: 1993/4/14 → 1+9+9+3+4+1+4=31→4
-  const LIFE_PATH = 4;
-  const m=date.getMonth()+1, d=date.getDate();
-  let s=LIFE_PATH+m+d;
-  while(s>9&&s!==11&&s!==22&&s!==33) s=[...String(s)].reduce((a,c)=>a+parseInt(c),0);
-  return{num:s,meaning:NUMEROLOGY_MEANING[s]||'変容'};
+// ════════════════════════════════════════════════════════════
+//  数秘術エンジン v3 ── 関係性モデル
+//  「足す」のではなく、運命数 × 宇宙数 の関係テーブルから
+//  今日のテーマ・エネルギー・アドバイスを直接導く
+// ════════════════════════════════════════════════════════════
+
+// 数字の本質定義
+const NUM_ESSENCE = {
+  1: { label:'開拓者',   color:'#F87171', symbol:'🌱' },
+  2: { label:'調和者',   color:'#C4B5FD', symbol:'🤝' },
+  3: { label:'表現者',   color:'#FCD34D', symbol:'✨' },
+  4: { label:'建設者',   color:'#6EE7B7', symbol:'🏗️' },
+  5: { label:'冒険者',   color:'#F97316', symbol:'🌊' },
+  6: { label:'奉仕者',   color:'#A78BFA', symbol:'💚' },
+  7: { label:'探求者',   color:'#38BDF8', symbol:'🔭' },
+  8: { label:'達成者',   color:'#E8C96A', symbol:'⚡' },
+  9: { label:'完成者',   color:'#F49AAD', symbol:'🌸' },
+  11:{ label:'啓示者',   color:'#C084FC', symbol:'🌙', master:true },
+  22:{ label:'夢実現者', color:'#E8C96A', symbol:'🌟', master:true },
+  33:{ label:'愛の師',   color:'#FF66B2', symbol:'❤️', master:true },
+};
+
+// ── 運命数4 × 宇宙数 の関係テーブル ──
+// 4の本質：安定・構築・忍耐・誠実・努力・地に足のついた力
+const RELATION_4 = {
+  1: {
+    score: 7,
+    type: '起動',
+    theme: '新たな基盤づくり',
+    energy: '4の安定した土台に、1の開拓エネルギーが火をつける日。新しいことを始めるための計画を立てるのに最適。',
+    advice: '思い切って動き出す勇気を持って。あなたの忍耐力が初動の躊躇を超えさせてくれる。',
+    lucky: '朝一番の行動',
+  },
+  2: {
+    score: 6,
+    type: '調和',
+    theme: '信頼関係の深化',
+    energy: '4の誠実さと2の共感力が共鳴する日。人間関係に丁寧な時間をかけることで信頼が固まる。',
+    advice: '聴くことを大切に。あなたの安定感が相手に安心を与え、絆が強まる。',
+    lucky: '対話とコミュニケーション',
+  },
+  3: {
+    score: 6,
+    type: '創造',
+    theme: '形にする喜び',
+    energy: '4の構築力に3の創造性が加わり、アイデアを現実に落とし込む力が高まる日。',
+    advice: '楽しみながら作ることを意識して。完璧主義を一時手放すと新しい可能性が見えてくる。',
+    lucky: '手を動かすこと',
+  },
+  4: {
+    score: 8,
+    type: '強化',
+    theme: '実力の完全発揮',
+    energy: '同じエネルギーが共鳴し、4の持つ全ての力が倍加する特別な日。努力が最も報われやすい。',
+    advice: '今日の積み重ねは未来の礎になる。地道な作業ほど大きな成果に直結する日。',
+    lucky: '長期的な取り組み',
+  },
+  5: {
+    score: 5,
+    type: '挑戦',
+    theme: '変化への適応',
+    energy: '安定を求める4と変化を好む5が拮抗する緊張感のある日。固執を手放すことが鍵。',
+    advice: '予定外の出来事を楽しむ余裕を持って。柔軟に動けた分だけ視野が広がる。',
+    lucky: '予定外の出来事',
+  },
+  6: {
+    score: 9,
+    type: '充足',
+    theme: '愛と安定の共鳴',
+    energy: '4の誠実さと6の愛が深く響き合う、今日の最高クラスの組み合わせ。家族・仕事・愛情が調和する。',
+    advice: '大切な人への感謝を伝える絶好の日。責任感を持って行動するとさらに開運する。',
+    lucky: '感謝の言葉',
+  },
+  7: {
+    score: 7,
+    type: '洞察',
+    theme: '真実への深化',
+    energy: '4の忍耐力と7の探求心が組み合わさり、物事の本質を見抜く力が高まる日。',
+    advice: '静かな環境で内省する時間を取って。直感と論理の両方を使うと答えが見えてくる。',
+    lucky: '一人で考える時間',
+  },
+  8: {
+    score: 8,
+    type: '収穫',
+    theme: '努力の結実',
+    energy: '4の努力と8の達成力が連動する力強い日。今まで積み上げてきたものが形になりやすい。',
+    advice: 'チャンスを見逃さないように積極的に動いて。自信を持って行動することが成果につながる。',
+    lucky: '決断と実行',
+  },
+  9: {
+    score: 6,
+    type: '完結',
+    theme: '一区切りと解放',
+    energy: '4の構築してきたものを9の完成エネルギーが締めくくる日。手放すことで次のステージが開く。',
+    advice: '執着していたものを見直す好機。感謝して手放すことが、次の大きな流れを呼び込む。',
+    lucky: '整理と断捨離',
+  },
+  11: {
+    score: 9,
+    type: '覚醒',
+    theme: '直感と実現力の融合',
+    energy: '4の構築力に11の超直感が加わるマスターナンバー日。閃きをすぐに形にできる特別なエネルギー。',
+    advice: '今日浮かんだアイデアは大切に書き留めて。直感を信じて踏み出すと奇跡的な展開が起きやすい。',
+    lucky: 'メモを取ること・閃き',
+    master: true,
+  },
+  22: {
+    score: 10,
+    type: '奇跡',
+    theme: '夢を現実に変える最高日',
+    energy: '運命数4（建設者）× 宇宙数22（夢実現者）は数秘術最強の組み合わせ。4が持つ地道な構築力と22のビジョナリーな力が完全に合致し、日常の努力が宇宙規模の可能性と繋がる超特別な日。',
+    advice: '今日は大きな夢を真剣に描いて。長期計画を立てたり、重要な決断をするのに最高のタイミング。転職・独立・新プロジェクトなど人生を変える行動との相性が抜群。',
+    lucky: '長期ビジョンの設定・重要な決断',
+    master: true,
+  },
+  33: {
+    score: 9,
+    type: '献身',
+    theme: '愛ある奉仕と守護',
+    energy: '4の誠実さに33のマスターエネルギーが宿る、愛と使命感に溢れる特別な日。人のために動くと宇宙的な加護がある。',
+    advice: '見返りを求めず誰かのために行動してみて。その誠実さが回り回って自分の幸運を呼び込む。',
+    lucky: '利他的な行動',
+    master: true,
+  },
+};
+
+// 桁和でマスターナンバーを保持しながら還元
+function reduceNum(n) {
+  while(n > 9 && n !== 11 && n !== 22 && n !== 33) {
+    n = [...String(n)].reduce((a,c) => a + parseInt(c), 0);
+  }
+  return n;
 }
 
-// ── 全占術統合スコア（完全版）──
+function getNumerologyDay(date) {
+  // ── 個人の数秘術（ライフパス / 運命数）: 固定値 ──
+  // 1993/4/14 → 1+9+9+3+4+1+4=31→3+1=4 ✅
+  const LIFE_PATH = 4;
+
+  // ── 今日の数秘術（ユニバーサルデーナンバー）: 日ごとに変化 ──
+  // 2026/03/09 → 2+0+2+6+0+3+0+9=22 → マスターナンバー22 ✅
+  const y = date.getFullYear(), m = date.getMonth()+1, d = date.getDate();
+  const dateStr = String(y) + String(m).padStart(2,'0') + String(d).padStart(2,'0');
+  const rawSum  = [...dateStr].reduce((a,c) => a + parseInt(c), 0);
+  const universalNum = reduceNum(rawSum);
+
+  // ── 個人の数秘術(4) × 今日の数秘術 の関係テーブルから直接取得 ──
+  const rel = RELATION_4[universalNum] || RELATION_4[1];
+  const uEssence = NUM_ESSENCE[universalNum] || NUM_ESSENCE[1];
+  const lEssence = NUM_ESSENCE[LIFE_PATH];
+
+  return {
+    lifePathNum:      LIFE_PATH,    // 個人の数秘術（固定: 4）
+    lifePathLabel:    lEssence.label,   // '建設者'
+    lifePathSymbol:   lEssence.symbol,
+    universalNum,                   // 今日の数秘術（日ごとに変化）
+    universalLabel:   uEssence.label,
+    universalSymbol:  uEssence.symbol,
+    universalColor:   uEssence.color,
+    isMaster:         !!rel.master,
+    relationType:     rel.type,
+    theme:            rel.theme,
+    energy:           rel.energy,
+    advice:           rel.advice,
+    lucky:            rel.lucky,
+    compatScore:      rel.score,        // 0〜10（スコア計算用）
+    // 旧互換: num はスコア計算でのみ使用（表示には使わない）
+    num:              universalNum,                   // 今日の数秘術（日ごとに変化）
+  };
+}
+
 function calcScoreFull(rokuyo,moon,pillar,now,monthPillar,hourPillar,moonSign,ziwei,numerology) {
   let s=50;
-  // 六曜(12点)
   s+={大安:12,友引:8,先勝:6,先負:4,赤口:2,仏滅:1}[rokuyo]||3;
-  // 月相(10点)
   s+={新月:9,三日月:6,'上弦の月':7,十三夜:8,満月:10,更待月:8,'下弦の月':6,有明月:5}[moon.name]||4;
-  // 通変星: 日干×本命(乙)(10点)
   const ts={'印綬':10,'正官':9,'正財':8,'食神':7,'比肩':6,'偏印':5,'偏官':4,'劫財':3,'傷官':2,'偏財':3};
   s+=ts[getTsuhensei('乙',pillar.stem)]||4;
-  // 月柱×本命(6点)
   s+={印綬:6,正官:5,正財:5,食神:4,比肩:4,偏印:3,偏官:3,劫財:2,傷官:1,偏財:2}[getTsuhensei('乙',monthPillar.stem)]||2;
-  // 時柱×本命(4点)
   s+={印綬:4,正官:4,正財:3,食神:3,比肩:3,偏印:2,偏官:2}[getTsuhensei('乙',hourPillar.stem)]||1;
-  // 九星三層(8点)
   const ki=getKyuseiDayScore(now);
   s+=Math.round(Math.max(0,Math.min(8,(ki.total+6)/12*8)));
-  // 西洋: 月星座×太陽(牡羊)相性(6点)
   const sc={牡羊座:5,獅子座:6,射手座:6,双子座:4,天秤座:4,水瓶座:4,牡牛座:2,蠍座:3,山羊座:3,蟹座:2,乙女座:2,魚座:3};
   s+=sc[moonSign.name]||3;
-  // 紫微斗数: 局数(5点)
   s+={6:5,5:4,4:3,3:2,2:1}[ziwei.kyoku]||2;
-  // 数秘術(5点)
-  s+={9:5,8:4,7:4,6:4,3:4,1:3,2:3,4:3,5:3,11:5,22:5,33:5}[numerology.num]||2;
-  // 日付補正
+  // 数秘術スコア: RELATION_4テーブルの関係性スコア(0〜10)をそのまま使用
+  s += Math.round((numerology.compatScore || 5) * 0.8);
   const db=[4,2,5,3,6,4,8,3,5,2,6,4,5,3,4,6,5,2,6,4,5,3,4,6,5,3,4,5,2,4,4];
   s+=db[now.getDate()%db.length];
   return Math.min(99,Math.max(50,s));
@@ -1191,7 +811,7 @@ const TAROT = [
   {n:'吊された男', eng:'dreamy upside-down girl, peaceful, ethereal light'},
   {n:'死神', eng:'mystical girl with scythe, transformation, dark beauty'},
   {n:'節制', eng:'angelic girl pouring light, balanced, golden wings'},
-  {n:'悪魔', eng:'mysterious girl with symbolic chains, inner freedom, spiritual awakening'},
+  {n:'悪魔', eng:'mysterious girl with symbolic chains, inner freedom'},
   {n:'塔', eng:'dramatic girl, lightning flash, revelation, shocked'},
   {n:'星', eng:'girl under starry sky, hope pouring, celestial peace'},
   {n:'月', eng:'dreamy girl in moonlit forest, mystery, illusion'},
@@ -1199,21 +819,19 @@ const TAROT = [
   {n:'審判', eng:'divine girl with trumpet, awakening, pure white light'},
   {n:'世界', eng:'dancing girl in cosmic wreath, completion, bliss'},
 ];
+
 function getTarot(now) {
   const seed = now.getFullYear()*10000 + (now.getMonth()+1)*100 + now.getDate();
   return TAROT[seed % TAROT.length];
 }
 
-// 運気スコア
 function calcScore(rokuyo, moon, pillar, now) {
-  // 旧スコア関数 → calcScoreFullに委譲
   const mp=getMonthPillar(now), hp=getHourPillar(now);
   const ms=getMoonSign(now), zw=getZiwei(4,14,6,18,getYearPillar(new Date(1993,3,14)).stem);
   const nd=getNumerologyDay(now);
   return calcScoreFull(rokuyo,moon,pillar,now,mp,hp,ms,zw,nd);
 }
 
-// Lucky colors
 const LUCKY_COLORS = {
   木: [{name:'エメラルドグリーン', hex:'#50C878'}, {name:'萌葱色', hex:'#4F7942'}, {name:'桜色', hex:'#FFB7C5'}],
   火: [{name:'朱色', hex:'#E34234'}, {name:'珊瑚色', hex:'#FF7F50'}, {name:'薔薇色', hex:'#FF66B2'}],
@@ -1225,20 +843,32 @@ const LUCKY_COLORS = {
 // ════════════════════════════════════════
 //  APP STATE
 // ════════════════════════════════════════
-let currentDiv       = null;
-let currentPromptData= null;
-let currentImageUrl  = null;
-let isGenerating     = false;
-let currentStyle     = localStorage.getItem('lg_style') || 'anime'; // 永続化
+let currentDiv        = null;
+let currentPromptData = null;
+let currentImageUrl   = null;
+let isGenerating      = false;
+// FIX: localStorage へのアクセスを try-catch で保護
+let currentStyle = 'anime';
+let freeStyle    = 'anime';
+try {
+  currentStyle = localStorage.getItem('lg_style')     || 'anime';
+  freeStyle    = localStorage.getItem('lg_freestyle') || 'anime';
+} catch(e) { /* プライベートブラウジング等でも動作 */ }
 
 // ════════════════════════════════════════
 //  STYLE TOGGLE
 // ════════════════════════════════════════
 function setStyle(s) {
   currentStyle = s;
-  localStorage.setItem('lg_style', s);
+  try { localStorage.setItem('lg_style', s); } catch(e){}
   document.getElementById('btnAnime').className = 'style-btn' + (s==='anime' ? ' active-anime' : '');
   document.getElementById('btnReal').className  = 'style-btn' + (s==='real'  ? ' active-real'  : '');
+}
+function setFreeStyle(s) {
+  freeStyle = s;
+  try { localStorage.setItem('lg_freestyle', s); } catch(e){}
+  document.getElementById('btnFreeAnime').className = 'style-btn' + (s==='anime' ? ' active-anime' : '');
+  document.getElementById('btnFreeReal').className  = 'style-btn' + (s==='real'  ? ' active-real'  : '');
 }
 function initStyleUI() {
   setStyle(currentStyle);
@@ -1277,46 +907,40 @@ function computeToday() {
 }
 
 // ════════════════════════════════════════
-//  UPDATE UI（鑑定詳細含む）
+//  UPDATE UI
 // ════════════════════════════════════════
 function updateUI(div) {
-  const { now, rokuyo, moon, pillar, yearPillar, monthPillar, hourPillar, tarot, kyusei, kyuseiInfo, moonSign, ascendant, ziwei, numerology, tsuhenDay, tenchusatsu, score, element, elemLabel, luckyColors } = div;
+  const { now, rokuyo, moon, pillar, yearPillar, monthPillar, hourPillar, tarot, kyusei,
+          kyuseiInfo, moonSign, ascendant, ziwei, numerology, tsuhenDay, tenchusatsu,
+          score, element, elemLabel, luckyColors } = div;
 
-  // ヘッダー日付
   const dow = '日月火水木金土'[now.getDay()];
   document.getElementById('headerDate').textContent =
     `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日（${dow}）`;
 
-  // フォーチュンバー
-  document.getElementById('fb-rokuyo').textContent  = rokuyo;
-  document.getElementById('fb-moon').textContent    = moon.icon + ' ' + moon.name;
-  document.getElementById('fb-kyusei').textContent  = kyusei;
-  // 年盤×月盤との関係を表示
+  document.getElementById('fb-rokuyo').textContent = rokuyo;
+  document.getElementById('fb-moon').textContent   = moon.icon + ' ' + moon.name;
+  document.getElementById('fb-kyusei').textContent = kyusei;
+
   const kyuseiEl = document.getElementById('fb-kyusei');
   if(kyuseiInfo) {
     const rel = kyuseiInfo.total >= 6 ? '大吉✨' : kyuseiInfo.total >= 0 ? '吉' : kyuseiInfo.total >= -3 ? '注意' : '凶⚠';
-    kyuseiEl.title = `年盤:${kyuseiInfo.yearBoard}(${kyuseiInfo.yElem}) 月盤:${kyuseiInfo.monthBoard}(${kyuseiInfo.mElem}) 日家:${kyuseiInfo.dayKyusei}(${kyuseiInfo.dElem},${kyuseiInfo.dScore>=0?'+':''}${kyuseiInfo.dScore}pt) → 本命金星との相性: ${rel}`;
+    kyuseiEl.title = `年盤:${kyuseiInfo.yearBoard} 月盤:${kyuseiInfo.monthBoard} 日家:${kyuseiInfo.dayKyusei} → ${rel}`;
     kyuseiEl.style.color = kyuseiInfo.total >= 6 ? '#FFD700' : kyuseiInfo.total >= 0 ? '#90EE90' : kyuseiInfo.total >= -3 ? '#FFA500' : '#FF6B6B';
   }
-  document.getElementById('fb-pillar').textContent  = pillar.pillar;
-  document.getElementById('fb-tarot').textContent   = tarot.n;
-  document.getElementById('fb-score').textContent   = score + 'pt';
+  document.getElementById('fb-pillar').textContent = pillar.pillar;
+  document.getElementById('fb-tarot').textContent  = tarot.n;
+  document.getElementById('fb-score').textContent  = score + 'pt';
 
-  // テーマラベル
   const styleLabel = currentStyle === 'anime' ? 'アニメ調' : 'リアル調';
   document.getElementById('themeLabel').textContent = `${elemLabel} × ${styleLabel}`;
 
-  // ── 鑑定詳細グリッド ──
   const rokuyoData = ROKUYO_AURA[rokuyo] || { color:'#ccc', adj:'穏やかな' };
   const elemColor  = ELEM_COLOR[element] || '#fff';
-  const scoreBar   = score >= 85 ? '★★★★★' : score >= 78 ? '★★★★☆' : score >= 70 ? '★★★☆☆' : '★★☆☆☆';
   const rokuyoDesc = {
-    大安:'万事大吉。物事の始まりに最適。',
-    友引:'慶事に吉。友を引く縁起の良い日。',
-    先勝:'午前中が吉。素早い行動で運気アップ。',
-    先負:'午後が吉。焦らず穏やかに過ごす日。',
-    仏滅:'休息と内省に適した日。再生の前兆。',
-    赤口:'正午前後のみ吉。慎重に行動を。',
+    大安:'万事大吉。物事の始まりに最適。', 友引:'慶事に吉。友を引く縁起の良い日。',
+    先勝:'午前中が吉。素早い行動で運気アップ。', 先負:'午後が吉。焦らず穏やかに過ごす日。',
+    仏滅:'休息と内省に適した日。再生の前兆。', 赤口:'正午前後のみ吉。慎重に行動を。',
   };
   const moonDesc = {
     新月:'新しい始まりのエネルギー。願い事を立てる好機。',
@@ -1324,75 +948,70 @@ function updateUI(div) {
     '上弦の月':'行動と決断の時。エネルギーが高まっている。',
     十三夜:'感情が高まる予感。直感を信じて。',
     満月:'エネルギーが最高潮。感謝と解放を。',
-    十六夜:'内省と整理の時。余韻を楽しんで。',
+    更待月:'内省と整理の時。余韻を楽しんで。',
     '下弦の月':'手放しと浄化の時。不要なものを整理。',
     有明月:'新たな夜明けの準備。静かに内なる声を聞いて。',
   };
 
   document.getElementById('divGrid').innerHTML = `
-    <div class="div-item">
-      <div class="div-item-label">📅 六曜</div>
+    <div class="div-item"><div class="div-item-label">📅 六曜</div>
       <div class="div-item-value" style="color:${rokuyoData.color}">${rokuyo}</div>
-      <div class="div-item-sub">${rokuyoDesc[rokuyo]||rokuyoData.adj+'な日'}</div>
-    </div>
-    <div class="div-item">
-      <div class="div-item-label">${moon.icon} 月相・月齢</div>
+      <div class="div-item-sub">${rokuyoDesc[rokuyo]||rokuyoData.adj+'な日'}</div></div>
+    <div class="div-item"><div class="div-item-label">${moon.icon} 月相・月齢</div>
       <div class="div-item-value" style="color:var(--violet)">${moon.name}</div>
-      <div class="div-item-sub">月齢${moon.age}日 ${moonDesc[moon.name]||''}</div>
-    </div>
-    <div class="div-item">
-      <div class="div-item-label">🔮 九星気学</div>
+      <div class="div-item-sub">月齢${moon.age}日 ${moonDesc[moon.name]||''}</div></div>
+    <div class="div-item"><div class="div-item-label">🔮 九星気学</div>
       <div class="div-item-value" style="color:var(--gold)">${kyusei}</div>
-      <div class="div-item-sub">${kyuseiInfo?'年:'+kyuseiInfo.yearBoard+' 月:'+kyuseiInfo.monthBoard+' 日:'+kyuseiInfo.dayKyusei:''}</div>
-    </div>
-    <div class="div-item">
-      <div class="div-item-label">🃏 タロット</div>
+      <div class="div-item-sub">${kyuseiInfo?'年:'+kyuseiInfo.yearBoard+' 月:'+kyuseiInfo.monthBoard+' 日:'+kyuseiInfo.dayKyusei:''}</div></div>
+    <div class="div-item"><div class="div-item-label">🃏 タロット</div>
       <div class="div-item-value" style="color:var(--rose)">${tarot.n}</div>
-      <div class="div-item-sub">${tarot.eng.split(',')[0]}</div>
-    </div>
-    <div class="div-item">
-      <div class="div-item-label">⚡ 四柱推命</div>
+      <div class="div-item-sub">${tarot.eng.split(',')[0]}</div></div>
+    <div class="div-item"><div class="div-item-label">⚡ 四柱推命</div>
       <div class="div-item-value" style="font-size:.76rem">${yearPillar.pillar} ${monthPillar.pillar} ${pillar.pillar}</div>
-      <div class="div-item-sub">年柱・月柱・日柱 通変:${tsuhenDay}</div>
-    </div>
-    <div class="div-item">
-      <div class="div-item-label">🌿 五行エレメント</div>
+      <div class="div-item-sub">年柱・月柱・日柱 通変:${tsuhenDay}</div></div>
+    <div class="div-item"><div class="div-item-label">🌿 五行エレメント</div>
       <div class="div-item-value" style="color:${elemColor}">${elemLabel}</div>
-      <div class="div-item-sub">${BIRTH_ELEM.yinLabel} 天中殺:${tenchusatsu}</div>
-    </div>
-    <div class="div-item">
-      <div class="div-item-label">⭐ 西洋占星術 ※近似</div>
+      <div class="div-item-sub">${BIRTH_ELEM.yinLabel} 天中殺:${tenchusatsu}</div></div>
+    <div class="div-item"><div class="div-item-label">⭐ 西洋占星術</div>
       <div class="div-item-value" style="color:var(--violet)">月:${moonSign.name}</div>
-      <div class="div-item-sub">上昇(宮崎):${ascendant.name} 太陽:牡羊座</div>
-    </div>
-    <div class="div-item">
-      <div class="div-item-label">🌸 紫微斗数</div>
+      <div class="div-item-sub">上昇(宮崎):${ascendant.name} 太陽:牡羊座</div></div>
+    <div class="div-item"><div class="div-item-label">🌸 紫微斗数</div>
       <div class="div-item-value" style="color:var(--rose)">${ziwei.mingName}</div>
-      <div class="div-item-sub">金四局 紫微星:午宮</div>
-    </div>
-    <div class="div-item">
-      <div class="div-item-label">🔢 数秘術 個人日数</div>
-      <div class="div-item-value" style="color:var(--gold)">${numerology.num}</div>
-      <div class="div-item-sub">${numerology.meaning}</div>
-    </div>
-  `;
+      <div class="div-item-sub">金四局 紫微星:午宮</div></div>
+    <div class="div-item" style="grid-column:1/-1">
+      <div class="div-item-label">🔢 数秘術 ── 個人数 × 今日の数 リーディング</div>
+      <div style="display:flex;align-items:center;gap:8px;margin:6px 0 4px">
+        <span style="font-size:.75rem;padding:2px 8px;border-radius:12px;background:rgba(110,231,183,.15);border:1px solid rgba(110,231,183,.3);color:#6EE7B7">
+          ${numerology.lifePathSymbol} 個人数&nbsp;<strong>${numerology.lifePathNum}</strong>&nbsp;${numerology.lifePathLabel}
+        </span>
+        <span style="color:var(--muted);font-size:.8rem">⟷</span>
+        <span style="font-size:.75rem;padding:2px 8px;border-radius:12px;background:rgba(232,201,106,.15);border:1px solid rgba(232,201,106,.3);color:${numerology.universalColor}">
+          ${numerology.universalSymbol} 今日の数&nbsp;<strong>${numerology.universalNum}</strong>&nbsp;${numerology.universalLabel}${numerology.isMaster ? '&nbsp;✨' : ''}
+        </span>
+      </div>
+      <div style="font-size:.8rem;font-weight:700;color:${numerology.universalColor};margin:4px 0 2px">
+        【${numerology.relationType}】${numerology.theme}
+      </div>
+      <div style="font-size:.62rem;color:rgba(240,234,255,.65);line-height:1.7;margin-bottom:4px">
+        ${numerology.energy}
+      </div>
+      <div style="font-size:.62rem;color:var(--gold);background:rgba(232,201,106,.08);border-left:2px solid rgba(232,201,106,.4);padding:4px 8px;border-radius:0 6px 6px 0">
+        ▶ ${numerology.advice}
+      </div>
+      <div style="font-size:.6rem;color:var(--muted);margin-top:4px">🍀 ラッキーアクション：${numerology.lucky}</div>
+    </div>`;
 
-  // ラッキーカラーパレット
   const paletteRow = document.getElementById('paletteRow');
   paletteRow.innerHTML = `<span class="palette-label">ラッキーカラー</span>`;
   luckyColors.forEach(c => {
     const sw = document.createElement('div');
-    sw.className = 'palette-swatch';
-    sw.style.background = c.hex;
-    sw.title = c.name;
+    sw.className = 'palette-swatch'; sw.style.background = c.hex; sw.title = c.name;
     paletteRow.appendChild(sw);
     const lb = document.createElement('span');
-    lb.className = 'palette-color-name';
-    lb.textContent = c.name;
+    lb.className = 'palette-color-name'; lb.textContent = c.name;
     paletteRow.appendChild(lb);
   });
 
-  // ラッキータグ
   const tags = [
     { label:`🌿 ${elemLabel}`, color: elemColor },
     { label:`📅 ${rokuyo}`,   color: rokuyoData.color || '#ccc' },
@@ -1406,108 +1025,306 @@ function updateUI(div) {
 }
 
 // ════════════════════════════════════════
-//  PROMPT BUILDER（スタイル・カスタム対応）
+//  PROMPT BUILDER
+//  FIX: プロンプト長を300文字以内に制限（URL長制限対応）
 // ════════════════════════════════════════
+// ════════════════════════════════════════════════════════════
+//  PROMPT BUILDER v3
+//  全占い要素を反映 + 再生成ごとにランダムに変化
+//  占い要素: 六曜・月相・五行・タロット・九星・日柱・数秘術・運気スコア
+// ════════════════════════════════════════════════════════════
+
+// 乱数シード付き選択（同じseedでは同じ結果、異なれば異なる結果）
+function seededPick(arr, seed, offset) {
+  return arr[Math.abs(seed * 31 + offset * 17) % arr.length];
+}
+
 function buildPrompt(div) {
-  const { rokuyo, moon, pillar, tarot, score, element, elemLabel, luckyColors } = div;
-  const _now   = div.now || new Date();
-  const ds     = _now.getFullYear()*10000+(_now.getMonth()+1)*100+_now.getDate(); // dateSeed
+  const { rokuyo, moon, pillar, tarot, score, element, elemLabel,
+          kyuseiInfo, numerology, tsuhenDay, moonSign } = div;
+  const _now  = div.now || new Date();
+  const ds    = _now.getFullYear()*10000+(_now.getMonth()+1)*100+_now.getDate();
   const custom = (document.getElementById('customInput')?.value || '').trim();
   const style  = currentStyle;
 
-  // ── スタイルプレフィックス ──
-  const stylePrefix = style === 'anime'
-    ? '(masterpiece:1.3), (safe:1.5), (sfw:1.4), best quality, ultra-detailed, 8k, anime illustration, 2d art, fully clothed,'
-    : '(masterpiece:1.3), (safe:1.5), (sfw:1.4), best quality, ultra-detailed, 8k, RAW photo, photorealistic, fully clothed, tasteful,';
+  // ── ランダム種：日付 + 呼び出しごとに変わる乱数 ──
+  // regenerate()のたびに seed が変わるため、プロンプトも毎回変化する
+  const rndSeed = ds + Math.floor(Math.random() * 9999);
 
-  // ── キャラ多様性（日付seedで毎日ローテーション） ──
-  const HAIR  = ['long straight dark hair', 'flowing wavy dark hair', 'loose long dark hair soft waves', 'silky long black hair side-swept', 'long dark hair with gentle curls'];
-  const POSE  = ['gentle smile looking at viewer', 'serene expression eyes softly closed', 'contemplative gaze toward horizon', 'soft smile three-quarter view', 'graceful stance slight breeze'];
-  const OUTFIT_ANIME = ['elegant qipao pastel floral', 'traditional white furisode kimono', 'soft chiffon dress with ribbon', 'ethereal fantasy miko outfit', 'modern sailor school uniform delicate'];
-  const OUTFIT_REAL  = ['elegant white linen dress', 'soft floral sundress flowing', 'simple graceful blouse high-waist skirt', 'minimalist chic wrap dress', 'delicate lace dress refined'];
-  const hi = ds % 5;
-  const hair   = HAIR[hi];
-  const pose   = POSE[(hi + (ds % 3)) % 5];
-  const outfit = style === 'anime' ? OUTFIT_ANIME[(hi + 1) % 5] : OUTFIT_REAL[(hi + 1) % 5];
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //  ① スタイル接頭語
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const stylePrefix = style === 'anime'
+    ? 'masterpiece, best quality, safe, sfw, anime illustration, fully clothed,'
+    : 'masterpiece, best quality, safe, sfw, RAW photo, photorealistic, fully clothed,';
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //  ② キャラクター基本描写（再生成ごとにランダム）
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const HAIR_ANIME = [
+    'long straight dark hair',
+    'flowing wavy dark hair with soft curls',
+    'silky long black hair side-swept',
+    'loose long dark hair gentle breeze',
+    'long dark hair with delicate braids',
+  ];
+  const HAIR_REAL = [
+    'natural long dark hair softly flowing',
+    'sleek long black hair',
+    'long dark wavy hair',
+    'glossy long dark hair parted middle',
+    'long dark hair tied loosely',
+  ];
+  const EYES_ANIME = [
+    'large expressive eyes',
+    'sparkling bright eyes',
+    'gentle warm eyes',
+    'deep clear eyes',
+    'dreamy soft eyes',
+  ];
+  const POSE = [
+    'gentle smile looking at viewer',
+    'serene expression soft gaze',
+    'graceful stance slight breeze',
+    'contemplative gaze afar',
+    'warm smile three-quarter view',
+    'peaceful eyes softly closed',
+    'elegant upright posture',
+  ];
+  const OUTFIT_ANIME = [
+    'elegant floral kimono pastel',
+    'soft white furisode with obi',
+    'delicate chiffon dress ribbon',
+    'ethereal fantasy miko outfit',
+    'graceful lace blouse high-waist skirt',
+    'flowing fairy dress sheer layers',
+    'refined sailor collar dress',
+  ];
+  const OUTFIT_REAL = [
+    'elegant white linen dress flowing',
+    'soft floral sundress light fabric',
+    'simple graceful blouse high-waist skirt',
+    'delicate lace dress refined',
+    'minimalist wrap dress natural tone',
+    'classic silk blouse tailored trousers',
+    'feminine midi dress pastel color',
+  ];
+
+  const hair    = seededPick(style==='anime' ? HAIR_ANIME : HAIR_REAL, rndSeed, 1);
+  const eyes    = style==='anime' ? seededPick(EYES_ANIME, rndSeed, 2) : 'natural makeup expressive eyes';
+  const pose    = seededPick(POSE,    rndSeed, 3);
+  const outfit  = seededPick(style==='anime' ? OUTFIT_ANIME : OUTFIT_REAL, rndSeed, 4);
 
   const charBase = style === 'anime'
-    ? `1girl, beautiful face, ${hair}, expressive eyes, ${pose}, ${outfit},`
-    : `1girl, beautiful asian woman, ${hair}, natural makeup, ${pose}, ${outfit},`;
+    ? `1girl, beautiful, ${hair}, ${eyes}, ${pose}, ${outfit},`
+    : `1girl, beautiful asian woman, ${hair}, ${eyes}, ${pose}, ${outfit},`;
 
-  // ── 五行(固定:木の陰)別シーン（複数バリエーション）──
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //  ③ 五行エレメント → 背景シーン（複数バリエーション、ランダム選択）
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   const ELEM_SCENES = {
-    木: ['spring cherry blossom garden pink petals floating', 'green forest glade dappled sunlight', 'wildflower meadow soft morning mist', 'bamboo grove ethereal jade light'],
-    火: ['summer festival lanterns warm golden glow', 'sunset beach orange horizon', 'bonfire night sparks dancing', 'crimson autumn maple vibrant warmth'],
-    土: ['golden wheat field harvest sunrise', 'misty mountain valley ancient stone', 'cozy tea room warm amber candlelight', 'earthy garden autumn colors tranquil'],
-    金: ['winter snow crystal moonlight silver', 'frosted plum blossoms dawn white', 'starlight ice lake reflection pristine', 'white chrysanthemum temple serene'],
-    水: ['moonlit ocean shimmering waves', 'waterfall misty blue starry night', 'dawn lake purple sky glass reflection', 'deep blue aurora celestial night'],
+    木: [
+      'spring cherry blossom garden pink petals falling',
+      'sunlit bamboo forest jade green glow',
+      'wildflower meadow soft morning mist',
+      'fresh green hillside dawn light',
+      'moss-covered stone path ancient forest',
+    ],
+    火: [
+      'summer festival warm lanterns glowing',
+      'vibrant sunset beach orange horizon',
+      'autumn red maple forest passionate warmth',
+      'evening bonfire dancing sparks golden',
+      'crimson sunrise mountaintop dramatic sky',
+    ],
+    土: [
+      'golden wheat field harvest amber light',
+      'misty ancient mountain valley earthy',
+      'cozy tea room warm candlelight amber',
+      'autumn garden fallen leaves peaceful',
+      'sunlit clay courtyard rustic warmth',
+    ],
+    金: [
+      'winter snow crystal moonlight silver',
+      'frosted white plum blossoms dawn',
+      'starlight ice lake pristine reflection',
+      'white chrysanthemum temple serene',
+      'silver birch forest morning frost',
+    ],
+    水: [
+      'moonlit ocean shimmering waves deep blue',
+      'misty waterfall blue starry night',
+      'dawn lake glass reflection purple sky',
+      'deep blue aurora celestial light',
+      'rain-kissed garden night glowing puddles',
+    ],
   };
-  const elemScene = (ELEM_SCENES[element] || ELEM_SCENES['水'])[ds % 4];
+  const elemScenes = ELEM_SCENES[element] || ELEM_SCENES['水'];
+  const elemScene  = seededPick(elemScenes, rndSeed, 5);
 
-  // ── タロット・月相・六曜の視覚テーマ ──
-  const TAROT_VISUAL = {
-    '愚者':'carefree wanderer wind in hair', '魔術師':'magical spell gestures glowing', '女教皇':'serene priestess mystic veil',
-    '女帝':'surrounded by blooming flowers lush garden', '皇帝':'regal golden light commanding presence', '教皇':'divine wisdom soft sacred light',
-    '恋人':'tender romance gentle warmth', '戦車':'triumphant motion victory energy', '力':'brave girl beside majestic lion serene courage',
-    '隠者':'lantern glow solitary mountain starlight', '運命の輪':'cosmic wheel spinning fortune', '正義':'scales truth clarity white robe',
-    '吊るされた男':'girl floating serenely peaceful meditation sky', '死神':'transformation butterfly dark cloak', '節制':'pouring luminous water between cups',
-    '悪魔':'moonlit mystery symbolic lantern inner strength', '塔':'lightning strike tower dramatic', '星':'healing starlight pouring from vessel night sky',
-    '月':'haunting moonlight illusion deep shadow', '太陽':'radiant sunflower field joyful golden', '審判':'divine trumpet call awakening white light ascending',
-    '世界':'dancing in cosmic wreath completion bliss',
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //  ④ タロット → キャラのオーラ・象徴モチーフ（★新規反映）
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const TAROT_AURA = {
+    '愚者':    ['carefree wind in hair flower in hand', 'butterfly nearby adventurous glow', 'petals swirling freedom energy'],
+    '魔術師':  ['magical glowing hands sparkles', 'wand sparkling mysterious power', 'arcane symbols floating ethereal'],
+    '女教皇':  ['celestial veil silver moonlight', 'scroll wisdom sacred serene', 'crescent moon above mystical'],
+    '女帝':    ['surrounded blooming roses abundant', 'flower crown lush garden', 'golden nature energy fertile'],
+    '皇帝':    ['regal crown golden powerful aura', 'authoritative calm commanding', 'majestic presence golden light'],
+    '法王':    ['divine white light sacred wisdom', 'spiritual glow holy atmosphere', 'blessing light descending'],
+    '恋人':    ['rose petals heart warm glow', 'gentle romantic atmosphere', 'soft pink light tender emotion'],
+    '戦車':    ['triumphant confident victory energy', 'dynamic motion forward power', 'shining armor radiant will'],
+    '力':      ['gentle hand lion serene courage', 'calm strength infinite patience', 'soft white light brave'],
+    '隠者':    ['lantern warm glow solitary wisdom', 'starlight path quiet introspection', 'muted mystic light alone'],
+    '運命の輪':['golden cosmic wheel spinning fate', 'stars swirling divine destiny', 'spiral light fortune ascending'],
+    '正義':    ['balanced scales pure truth', 'clear white light clarity', 'scales of light elegant'],
+    '吊された男':['serene floating upside down peaceful', 'ethereal suspension transcendent', 'soft purple haze meditative'],
+    '死神':    ['transformation butterfly dark cloak', 'white roses change rebirth', 'twilight metamorphosis mystic'],
+    '節制':    ['golden cups pouring light balance', 'rainbow healing harmony glow', 'gentle angel wings amber'],
+    '悪魔':    ['moonlit inner freedom chains dissolved', 'symbolic lantern spiritual awakening', 'shadow and light contrast'],
+    '塔':      ['lightning revelation dramatic change', 'electric sky awakening shock', 'bold contrast dramatic'],
+    '星':      ['pouring starlight hope healing', 'night sky stars hope vessel', 'ethereal blue silver hope'],
+    '月':      ['moonlit illusion dreamy haze', 'mysterious deep shadow reflection', 'blue moonlight fantasy'],
+    '太陽':    ['radiant sunflower field joyful', 'warm golden sunshine happiness', 'bright solar energy bliss'],
+    '審判':    ['divine light awakening ascension', 'white trumpet call pure energy', 'rising transcendent glow'],
+    '世界':    ['dancing cosmic wreath completion', 'infinite universe completion bliss', 'rainbow aurora achievement'],
   };
-  const MOON_VISUAL = {
-    '新月':'pitch dark sky thousand stars new beginning',
-    '三日月':'thin silver crescent glow wish upon a star',
-    '上弦の月':'half-lit resolve growing light determination',
-    '十三夜':'silver nearly-full anticipation glowing',
-    '満月':'radiant golden full moon halo intense light ethereal',
-    '更待月':'waning gibbous soft silver late-night stillness',
-    '下弦の月':'twilight release half-shadow letting go',
-    '有明月':'pale fading dawn moon morning glow',
-  };
-  const ROKUYO_MOOD = {
-    '大安':'bright auspicious joyful warm light', '友引':'warm friendly relaxed social glow',
-    '先勝':'early morning determined energized', '先負':'quiet calm afternoon contemplative',
-    '仏滅':'deep reflective mysterious shadow reborn', '赤口':'cautious twilight crimson edge',
-  };
-  const rokuyoData = ROKUYO_AURA[rokuyo] || ROKUYO_AURA['大安'];
-  const tarotV  = TAROT_VISUAL[tarot.n]  || tarot.eng || '';
-  const moonV   = MOON_VISUAL[moon.name] || moon.eng  || '';
-  const rokuyoV = ROKUYO_MOOD[rokuyo]    || rokuyoData.eng || '';
-  const scoreBoost = score >= 88 ? '(divine radiance:1.3), golden particles, god rays, glowing halo,' : score >= 78 ? 'soft golden glow, magical shimmer,' : '';
+  const tarotOpts = TAROT_AURA[tarot.n] || ['magical aura mysterious light'];
+  const tarotAura = seededPick(tarotOpts, rndSeed, 6);
 
-  // ── 品質タグ ──
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //  ⑤ 月相 → 光・空の描写（★強化）
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const MOON_VISUALS = {
+    '新月':    ['pitch dark sky thousand stars new beginning', 'dark velvet sky silver stars', 'moonless night star-filled infinite'],
+    '三日月':  ['thin silver crescent moon wish upon star', 'slender crescent glow twilight hope', 'crescent moon soft purple dusk'],
+    '上弦の月':['half moon white light determination', 'half-lit resolve growing brightness', 'half moon crisp clear night'],
+    '十三夜':  ['nearly full moon silver anticipation', 'bright silver moon almost full glow', 'luminous nearly full moon haze'],
+    '満月':    ['radiant full moon halo intense silver', 'brilliant full moon glowing ethereal', 'golden full moon peak energy'],
+    '更待月':  ['waning gibbous soft silver stillness', 'late night silver moon serene glow', 'pale waning moon gentle light'],
+    '下弦の月':['twilight release half shadow waning', 'fading half moon quiet release', 'half moon descent soft dusk'],
+    '有明月':  ['pale fading dawn moon morning mist', 'delicate dawn crescent soft light', 'early morning crescent dew'],
+  };
+  const moonOpts  = MOON_VISUALS[moon.name] || ['soft moonlight night'];
+  const moonVisual = seededPick(moonOpts, rndSeed, 7);
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //  ⑥ 六曜 → 全体の雰囲気・色調（★強化）
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const ROKUYO_VIBES = {
+    '大安': ['bright golden auspicious light warm', 'joyful radiant blessed atmosphere', 'warm golden glow celebratory'],
+    '友引': ['warm soft light friendly inviting', 'gentle rose glow social warmth', 'amber cozy light friendly tone'],
+    '先勝': ['fresh morning light energized hopeful', 'crisp dawn brightness active', 'clear sunrise determined energy'],
+    '先負': ['calm soft afternoon light contemplative', 'muted peaceful pastel serene', 'quiet gentle light patient'],
+    '仏滅': ['deep shadow mystical inner light', 'moody atmospheric introspective', 'dark blue deep mysterious glow'],
+    '赤口': ['crimson edge twilight cautious', 'deep red accent twilight tension', 'dramatic red-tinged dusk'],
+  };
+  const rokuyoOpts = ROKUYO_VIBES[rokuyo] || ['soft natural light'];
+  const rokuyoVibe = seededPick(rokuyoOpts, rndSeed, 8);
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //  ⑦ 九星気学 → カラーアクセント（★新規反映）
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const KYUSEI_COLOR = {
+    '一白水星': 'cool blue white accent',
+    '二黒土星': 'deep earth brown accent',
+    '三碧木星': 'fresh green blue accent',
+    '四緑木星': 'soft jade green accent',
+    '五黄土星': 'golden yellow center accent',
+    '六白金星': 'silver white metallic accent',
+    '七赤金星': 'rose gold pink accent',
+    '八白土星': 'warm ivory stone accent',
+    '九紫火星': 'deep violet purple accent',
+  };
+  // 九星は本命星（七赤金星）固定なので、日盤との組み合わせで色を決める
+  const myKyuseiColor   = KYUSEI_COLOR['七赤金星'] || 'rose gold accent';
+  const dayKyuseiColor  = kyuseiInfo ? (KYUSEI_COLOR[kyuseiInfo.dayKyusei] || '') : '';
+  const kyuseiAccent    = dayKyuseiColor
+    ? `${myKyuseiColor}, ${dayKyuseiColor}`
+    : myKyuseiColor;
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //  ⑧ 日柱（四柱推命）→ 衣装・小物アクセント（★新規反映）
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const PILLAR_ACCENT = {
+    甲: 'spring green ribbon', 乙: 'soft green flower accessory',
+    丙: 'warm flame orange accent', 丁: 'subtle red jewel',
+    戊: 'earthy amber brooch', 己: 'sandy gold trim',
+    庚: 'silver metallic detail', 辛: 'white pearl accessory',
+    壬: 'deep blue water drop gem', 癸: 'indigo subtle detail',
+  };
+  const pillarAccent = PILLAR_ACCENT[pillar.stem] || '';
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //  ⑨ 数秘術（今日の数）→ 特別エフェクト（★新規反映）
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const NUM_EFFECT = {
+    1:  'single bright star foreground',
+    2:  'two delicate butterflies nearby',
+    3:  'three petal flowers scattered',
+    4:  'four-leaf clover lucky charm',
+    5:  'five-point star sparkle',
+    6:  'soft heart-shaped light',
+    7:  'seven rainbow prismatic light',
+    8:  'eight infinity loop light trail',
+    9:  'nine golden petals falling',
+    11: 'twin pillars of light ascending',
+    22: 'double golden ring halo cosmic light',
+    33: 'triple heart pure light divine',
+  };
+  const numEffect = NUM_EFFECT[numerology.universalNum] || '';
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //  ⑩ 運気スコア → 輝き・光の強度
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const scoreEffect = score >= 90 ? 'god rays divine radiance golden particles sparkling'
+    : score >= 80 ? 'soft golden glow magical shimmer'
+    : score >= 70 ? 'gentle light warm atmosphere'
+    : 'natural soft light calm';
+
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //  ⑪ 品質タグ
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   const qualityTags = style === 'anime'
-    ? 'highly aesthetic, perfect anatomy, cinematic lighting, bokeh, dynamic composition, vibrant colors'
-    : 'sharp focus, high resolution, professional lighting, depth of field, natural skin texture, 4k, 8k uhd';
+    ? 'cinematic lighting, bokeh, dynamic composition, vibrant colors'
+    : 'sharp focus, depth of field, natural skin texture, 4k';
 
-  const customPart = custom ? `${custom},` : '';
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //  ⑫ カスタム入力
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  const customPart = custom ? custom + ',' : '';
 
-  // ── フルプロンプト組み立て ──
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  //  全要素を結合（URL長制限対策: 最大380文字）
+  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   const fullPrompt = [
-    stylePrefix,
-    charBase,
-    elemScene + ',',
-    tarotV + ',',
-    moonV + ',',
-    rokuyoV + ',',
-    scoreBoost,
-    customPart,
-    qualityTags,
-  ].filter(Boolean).join(' ');
+    stylePrefix,       // スタイル
+    charBase,          // キャラ基本（ランダム）
+    elemScene + ',',   // 五行 → 背景シーン（ランダム）
+    tarotAura + ',',   // タロット → オーラ（ランダム）★
+    moonVisual + ',',  // 月相 → 空・光（ランダム）
+    rokuyoVibe + ',',  // 六曜 → 雰囲気（ランダム）
+    kyuseiAccent + ',',// 九星 → カラー★
+    pillarAccent + ',',// 日柱 → 小物アクセント★
+    numEffect + ',',   // 数秘術 → 特殊エフェクト★
+    scoreEffect + ',', // 運気スコア → 輝き
+    customPart,        // カスタム追加
+    qualityTags,       // 品質
+  ].filter(Boolean).join(' ').slice(0, 400);
 
-  const negPrompt = style === 'anime'
-    ? 'nude, bad anatomy, extra limbs, blurry, low quality, watermark, ugly, deformed, text, logo, suggestive, revealing, exposed'
-    : 'nude, bad anatomy, plastic skin, airbrushed, overly smooth, watermark, blurry, ugly, deformed, fake, text, logo, suggestive, revealing, exposed';
+  const negPrompt = 'nude, nsfw, bad anatomy, extra limbs, blurry, low quality, watermark, ugly, deformed, revealing, exposed';
 
-  return { prompt: fullPrompt, negative: negPrompt, theme: `${element}・${rokuyo}・${moon.name}`, elemLabel, style, tarotName: tarot.n, dateSeed: ds };
+  // テーマ文字列（履歴表示用）
+  const theme = `${element}(${BIRTH_ELEM.label})・${rokuyo}・${moon.name}・${tarot.n}・数${numerology.universalNum}`;
+
+  return { prompt: fullPrompt, negative: negPrompt, theme, elemLabel, style, tarotName: tarot.n, dateSeed: ds, mode: 'oracle' };
 }
 
 // ════════════════════════════════════════
-//  IndexedDB（永続履歴）
+//  IndexedDB
 // ════════════════════════════════════════
 const DB_NAME    = 'LuckyGirlDB';
-const DB_VERSION = 2;   // v2: keyPath を 'id'（タイムスタンプ）に変更
+const DB_VERSION = 2;
 const STORE_NAME = 'history';
 let db = null;
 
@@ -1516,12 +1333,8 @@ function openDB() {
     if(db) return resolve(db);
     const req = indexedDB.open(DB_NAME, DB_VERSION);
     req.onupgradeneeded = e => {
-      const d   = e.target.result;
-      const old = e.oldVersion;
-      // v1: date を keyPath にしていた旧ストアを削除して再作成
-      if(old < 2 && d.objectStoreNames.contains(STORE_NAME)) {
-        d.deleteObjectStore(STORE_NAME);
-      }
+      const d = e.target.result, old = e.oldVersion;
+      if(old < 2 && d.objectStoreNames.contains(STORE_NAME)) d.deleteObjectStore(STORE_NAME);
       if(!d.objectStoreNames.contains(STORE_NAME)) {
         const store = d.createObjectStore(STORE_NAME, { keyPath: 'id' });
         store.createIndex('savedAt', 'savedAt', { unique: false });
@@ -1533,24 +1346,22 @@ function openDB() {
 }
 
 function saveToHistory(promptData, imageData, extraInfo) {
-  const now  = currentDiv ? currentDiv.now : new Date();
+  const now = currentDiv ? currentDiv.now : new Date();
   const dateStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-  // id = タイムスタンプ文字列（同日複数枚でも別レコード）
   const id = String(Date.now());
   openDB().then(db => {
-    const tx    = db.transaction(STORE_NAME, 'readwrite');
+    const tx = db.transaction(STORE_NAME, 'readwrite');
     const store = tx.objectStore(STORE_NAME);
     store.add({
-      id,
-      date:      dateStr,
-      theme:     promptData.theme  || '—',
-      style:     promptData.style  || currentStyle,
-      mode:      promptData.mode   || 'oracle',   // 'oracle' | 'custom' | 'img2img'
-      prompt:    promptData.prompt || '',
+      id, date: dateStr,
+      theme:   promptData.theme  || '—',
+      style:   promptData.style  || currentStyle,
+      mode:    promptData.mode   || 'oracle',
+      prompt:  promptData.prompt || '',
       imageData,
-      score:     currentDiv ? currentDiv.score  : null,
-      rokuyo:    currentDiv ? currentDiv.rokuyo : null,
-      savedAt:   Date.now(),
+      score:   currentDiv ? currentDiv.score  : null,
+      rokuyo:  currentDiv ? currentDiv.rokuyo : null,
+      savedAt: Date.now(),
       ...(extraInfo || {}),
     });
     tx.oncomplete = () => renderHistory();
@@ -1561,11 +1372,8 @@ function loadHistory() {
   return openDB().then(db => new Promise((resolve, reject) => {
     const tx  = db.transaction(STORE_NAME, 'readonly');
     const req = tx.objectStore(STORE_NAME).getAll();
-    req.onsuccess = e => {
-      const all = (e.target.result || []).sort((a,b) => b.savedAt - a.savedAt);
-      resolve(all);
-    };
-    req.onerror = e => reject(e.target.error);
+    req.onsuccess = e => resolve((e.target.result || []).sort((a,b) => b.savedAt - a.savedAt));
+    req.onerror   = e => reject(e.target.error);
   }));
 }
 
@@ -1583,7 +1391,7 @@ function renderHistory() {
   loadHistory().then(history => {
     const grid = document.getElementById('historyGrid');
     if(!history || history.length === 0) {
-      grid.innerHTML = '<div class="no-history" style="grid-column:1/-1">まだ履歴がありません<br><small>画像が生成されると永続保存されます</small></div>';
+      grid.innerHTML = '<div class="no-history" style="grid-column:1/-1">まだ履歴がありません<br><small>画像が生成されると保存されます</small></div>';
       return;
     }
     grid.innerHTML = history.map(h => {
@@ -1604,14 +1412,18 @@ function renderHistory() {
 
 // ════════════════════════════════════════
 //  IMAGE GENERATION
-//  ① Pollinations.ai turbo（3〜10秒・メイン）
-//  ② Stable Horde（登録キーで高速・フォールバック）
+//  FIX 1: onRaceWin の img.onload を img.src より前に設定
+//  FIX 2: secTimer を onFail でも確実にクリア
+//  FIX 3: Horde API の無効パラメータ priority_multiplier を削除
+//  FIX 4: pollinImg に crossOrigin を設定
 // ════════════════════════════════════════
 
-const HORDE_API = 'https://stablehorde.net/api/v2';
+const HORDE_API  = 'https://stablehorde.net/api/v2';
 const HORDE_ANON = '0000000000';
+
 function getHordeKey() {
-  return localStorage.getItem('lg_hordekey') || HORDE_ANON;
+  try { return localStorage.getItem('lg_hordekey') || HORDE_ANON; }
+  catch(e) { return HORDE_ANON; }
 }
 
 const ANIME_MODELS = ['Anything Diffusion','Anything v5','anything-v5'];
@@ -1620,22 +1432,26 @@ const REAL_MODELS  = ['Realistic Vision','AbsoluteReality','Deliberate'];
 let hordeJobId   = null;
 let pollInterval = null;
 let pollinTimer  = null;
+let secTimer     = null; // FIX: グローバルに宣言してどこからでもクリア可能に
 
 function stopAll() {
   if(pollInterval){ clearInterval(pollInterval); pollInterval = null; }
-  if(pollinTimer) { clearTimeout(pollinTimer);  pollinTimer  = null; }
+  if(pollinTimer) { clearTimeout(pollinTimer);   pollinTimer  = null; }
+  if(secTimer)    { clearInterval(secTimer);      secTimer     = null; } // FIX
 }
 
-// ── Pollinations.ai URL 生成（buildPromptのpromptをそのまま使用）──
-// ※ 表示プロンプト = 実際の生成プロンプト で完全一致
+// FIX: Pollinationsプロンプトを短く構築（URL長制限対策）
 function buildPollinationsUrl(promptData, seed) {
-  const prompt  = promptData.prompt   || '';
-  const neg     = promptData.negative || 'nsfw, nude, bad anatomy, blurry, low quality';
-  const trimmedPrompt = prompt.length > 500 ? prompt.slice(0, 500) : prompt;
-  const encoded = encodeURIComponent(trimmedPrompt);
-  const url = `https://image.pollinations.ai/prompt/${encoded}?model=flux-schnell&seed=${seed}&width=448&height=640&nologo=true&nofeed=true&enhance=false`;
-  return { url, neg };
+  const prompt = promptData.prompt || '';
+  // URL長が長くなりすぎないよう280文字でカット
+  const trimmed = prompt.length > 280 ? prompt.slice(0, 280) : prompt;
+  const encoded = encodeURIComponent(trimmed);
+  // FIX: enhance=false を削除（一部モデルで不具合の原因）
+  // FIX: flux モデルを使用（flux-schnellより安定）
+  const url = `https://image.pollinations.ai/prompt/${encoded}?model=flux&seed=${seed}&width=448&height=640&nologo=true&nofeed=true`;
+  return url;
 }
+
 function generateImage(promptData, seed) {
   const loading  = document.getElementById('loadingOverlay');
   const img      = document.getElementById('mainImg');
@@ -1644,13 +1460,13 @@ function generateImage(promptData, seed) {
   const regenBtn = document.getElementById('regenBtn');
   const hint     = document.getElementById('loadingPromptHint');
 
-  stopAll();
+  stopAll(); // 既存の全タイマーを停止
   loading.classList.remove('hidden');
   errorDiv.style.display = 'none';
   img.classList.remove('loaded');
-  img.onload = null;
+  img.onload  = null;
   img.onerror = null;
-  img.src = '';
+  img.src     = '';
   dlBtn.disabled    = true;
   regenBtn.disabled = true;
   isGenerating = true;
@@ -1658,24 +1474,10 @@ function generateImage(promptData, seed) {
   document.getElementById('themeLabel').textContent =
     `${promptData.elemLabel || promptData.theme.split('・')[0]} × ${promptData.style === 'anime' ? 'アニメ調' : 'リアル調'}`;
 
-  // ── 完了処理（base64変換して永続保存）──
-  const onSuccess = (src) => {
-    if(!isGenerating) return;
-    // base64変換を廃止: URLをそのまま使用（CORSタイムアウト防止）
-    currentImageUrl = src;
-    isGenerating = false;
-    img.classList.add('loaded');
-    loading.classList.add('hidden');
-    dlBtn.disabled    = false;
-    regenBtn.disabled = false;
-    hint.textContent  = '✦ 生成完了！';
-    saveToHistory(promptData, src);
-  };
-
-  // ── 失敗処理 ──
+  // ── FIX: onFail でも secTimer をクリア ──
   const onFail = (msg) => {
     if(!isGenerating) return;
-    stopAll();
+    stopAll(); // secTimer もここでクリアされる
     isGenerating = false;
     regenBtn.disabled = false;
     loading.classList.add('hidden');
@@ -1686,67 +1488,101 @@ function generateImage(promptData, seed) {
     errorDiv.style.display = 'flex';
   };
 
-  // ════ ① Pollinations.ai + ② Stable Horde 並列競争方式 ════
-  // どちらか先に完成した方を表示（タイムアウト大幅削減）
-  const pollinResult = buildPollinationsUrl(promptData, seed);
-  const pollinUrl = pollinResult.url;
-  currentImageUrl = pollinUrl;
-  hint.textContent = '✦ AI生成中… (Pollinations & Horde 並列)';
-
-  let raceDone = false; // どちらかが完成したらtrue
+  let raceDone = false;
   let secs = 0;
-  const secTimer = setInterval(()=>{
+  // FIX: secTimer をグローバル変数に格納
+  secTimer = setInterval(()=>{
     secs++;
     if(!raceDone) hint.textContent = `✦ 生成中… ${secs}秒`;
+    if(secs > 180) { stopAll(); onFail('タイムアウト（180秒）'); }
   }, 1000);
 
-  // 勝者が決まったら表示する共通関数
+  // ── FIX: onRaceWin - img.onload を img.src より前に設定（CRITICAL BUG FIX）──
   function onRaceWin(src, winner) {
     if(raceDone) return;
     raceDone = true;
-    stopAll();
-    clearInterval(secTimer);
+    stopAll(); // secTimer も含めて全停止
+
     currentImageUrl = src;
-    isGenerating = false;
-    img.onload = null; img.onerror = null;
-    img.src = src;
+    isGenerating    = false;
+
+    // FIX: まず onload/onerror を設定してから src を変更
     img.onload = () => {
       img.classList.add('loaded');
       loading.classList.add('hidden');
-      dlBtn.disabled = false; regenBtn.disabled = false;
-      hint.textContent = `✦ 生成完了！(${winner})`;
-      saveToHistory(promptData, src);
+      dlBtn.disabled    = false;
+      regenBtn.disabled = false;
+      hint.textContent  = `✦ 生成完了！(${winner})`;
+      // FIX: 履歴保存 - canvas経由でbase64変換を試みる（失敗したらURLで保存）
+      convertImageToBase64(src, img).then(data => {
+        saveToHistory(promptData, data);
+      }).catch(() => {
+        saveToHistory(promptData, src); // フォールバック: URLで保存
+      });
     };
+    img.onerror = () => {
+      // Pollinations失敗 → Hordeに切り替え
+      if(!raceDone) { raceDone = false; onFail('画像の読み込みに失敗しました'); }
+      else { loading.classList.add('hidden'); onFail('画像の読み込みに失敗しました'); }
+    };
+
+    // FIX: onload/onerror 設定後に src を変更
+    img.src = src;
   }
 
-  // ── Pollinations: imgタグで直接ロード（最速）──
+  // ── canvas経由でbase64変換（CORS対応）──
+  function convertImageToBase64(src, imgEl) {
+    return new Promise((resolve, reject) => {
+      // data: URLはそのまま返す
+      if(src.startsWith('data:')) { resolve(src); return; }
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width  = imgEl.naturalWidth  || 448;
+        canvas.height = imgEl.naturalHeight || 640;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(imgEl, 0, 0);
+        resolve(canvas.toDataURL('image/jpeg', 0.85));
+      } catch(e) {
+        // CORSエラー等 → URLをそのまま使用
+        reject(e);
+      }
+    });
+  }
+
+  // ── ① Pollinations.ai（メイン） ──
+  const pollinUrl = buildPollinationsUrl(promptData, seed);
+  currentImageUrl = pollinUrl;
+  hint.textContent = '✦ 生成中… (Pollinations AI)';
+
+  // FIX: crossOrigin を設定（canvas変換のため）
   const pollinImg = new Image();
+  pollinImg.crossOrigin = 'anonymous';
   pollinImg.onload = () => {
     if(raceDone) return;
-    // Pollinationsが先に完成 → img.srcにセット
     onRaceWin(pollinUrl, 'Pollinations AI');
   };
   pollinImg.onerror = () => {
-    hint.textContent = '✦ Horde生成中…（Pollinations失敗）';
+    if(!raceDone) hint.textContent = '✦ Horde生成中…（Pollinations失敗）';
   };
-  pollinImg.src = pollinUrl;
 
-  // ── Pollinations タイムアウト: 20秒（短縮）──
-  pollinTimer = setTimeout(()=>{
+  // FIX: Pollinations タイムアウト短縮（25秒）
+  pollinTimer = setTimeout(() => {
     pollinImg.onload = null; pollinImg.onerror = null; pollinImg.src = '';
     if(!raceDone) hint.textContent = '✦ Horde生成中…';
-  }, 20000);
+  }, 25000);
 
-  // ── Horde: 同時並列スタート（Pollinationsが遅くても待たない）──
-  setTimeout(()=>{ if(!raceDone) tryHorde(); }, 100);
+  pollinImg.src = pollinUrl;
 
-  // ════ ② Stable Horde（フォールバック・高品質） ════
+  // ── ② Stable Horde（並列フォールバック）──
+  setTimeout(() => { if(!raceDone) tryHorde(); }, 200);
+
   function tryHorde() {
     const apiKey = getHordeKey();
     const models = promptData.style === 'anime' ? ANIME_MODELS : REAL_MODELS;
-    hint.textContent = `✦ Horde キューに追加中…`;
+    hint.textContent = '✦ Horde キューに追加中…';
     let waitSecs = 0;
 
+    // FIX: 無効なパラメータ priority_multiplier を削除
     fetch(`${HORDE_API}/generate/async`, {
       method: 'POST',
       headers: {
@@ -1759,64 +1595,68 @@ function generateImage(promptData, seed) {
         params: {
           width:        512,
           height:       768,
-          steps:        15,        // 速度重視（品質と速度のバランス）
+          steps:        20,
           cfg_scale:    7,
           sampler_name: 'k_euler_a',
           n:            1,
         },
-        r2:             false,
-        nsfw:           false,
-        censor_nsfw:    true,
-        trusted_workers: apiKey !== HORDE_ANON, // 登録キーなら信頼ワーカー優先
-        slow_workers:   true,
-        models:         models,
-        // 登録キーなら高優先度モード
-        ...(apiKey !== HORDE_ANON ? { priority_multiplier: 2 } : {}),
+        r2:              false,
+        nsfw:            false,
+        censor_nsfw:     true,
+        trusted_workers: apiKey !== HORDE_ANON,
+        slow_workers:    true,
+        models:          models,
+        // FIX: priority_multiplier 削除（Horde APIに存在しないパラメータ）
       })
     })
-    .then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); })
-    .then(data=>{
-      if(!data.id) throw new Error('no id');
+    .then(r => { if(!r.ok) throw new Error(`Horde error: ${r.status}`); return r.json(); })
+    .then(data => {
+      if(!data.id) throw new Error('no job id');
       hordeJobId = data.id;
-      hint.textContent = `✦ Horde キュー待ち…`;
+      hint.textContent = '✦ Horde キュー待ち…';
 
-      pollInterval = setInterval(()=>{
+      pollInterval = setInterval(() => {
         waitSecs += 5;
-        fetch(`${HORDE_API}/generate/check/${hordeJobId}`,{
-          headers:{'Client-Agent':'lucky-girl-oracle:3.0:github'}
+        fetch(`${HORDE_API}/generate/check/${hordeJobId}`, {
+          headers: { 'Client-Agent':'lucky-girl-oracle:3.0:github' }
         })
-        .then(r=>r.json())
-        .then(status=>{
-          if(status.done){
+        .then(r => r.json())
+        .then(status => {
+          if(status.done) {
             stopAll();
             hint.textContent = '✦ 完成！受信中…';
-            fetch(`${HORDE_API}/generate/status/${hordeJobId}`,{
-              headers:{'Client-Agent':'lucky-girl-oracle:3.0:github'}
+            fetch(`${HORDE_API}/generate/status/${hordeJobId}`, {
+              headers: { 'Client-Agent':'lucky-girl-oracle:3.0:github' }
             })
-            .then(r=>r.json())
-            .then(result=>{
+            .then(r => r.json())
+            .then(result => {
               const gen = result.generations?.[0];
-              if(!gen?.img){ onFail('生成失敗'); return; }
+              if(!gen?.img) { onFail('生成失敗（Horde）'); return; }
               const src = gen.img.startsWith('http')
                 ? gen.img
                 : `data:image/webp;base64,${gen.img}`;
-              // Horde結果をそのまま表示
               onRaceWin(src, 'Stable Horde');
-            }).catch(()=>onFail());
-          } else if(status.faulted){
-            stopAll(); onFail('生成エラー');
+            })
+            .catch(() => onFail('Horde受信エラー'));
+          } else if(status.faulted) {
+            stopAll(); onFail('Horde生成エラー');
           } else {
             const pos  = status.queue_position || 0;
-            const wait = status.wait_time || '?';
+            const wait = status.wait_time      || '?';
             hint.textContent = pos > 0
               ? `✦ Horde キュー ${pos}番目 / 残り${wait}秒`
               : `✦ Horde 生成中… ${waitSecs}秒`;
-            if(waitSecs > 240) { stopAll(); onFail('タイムアウト'); }
+            if(waitSecs > 240) { stopAll(); onFail('Horde タイムアウト'); }
           }
-        }).catch(e=>console.warn('poll:',e));
+        })
+        .catch(e => console.warn('Horde poll:', e));
       }, 5000);
     })
-    .catch(e=>{ console.warn('horde submit:',e); onFail('接続エラー'); });
+    .catch(e => {
+      console.warn('Horde submit error:', e);
+      // Hordeも失敗 → Pollinationsのみ待機
+      hint.textContent = '✦ Pollinations 待機中…';
+    });
   }
 }
 
@@ -1836,15 +1676,36 @@ function regenerate() {
 
 // ════════════════════════════════════════
 //  DOWNLOAD
+//  FIX: canvas経由でダウンロード、失敗時は新タブで開く
 // ════════════════════════════════════════
 function downloadImage() {
   if(!currentImageUrl) return;
   const d = currentDiv ? currentDiv.now : new Date();
-  const fname = `lucky-girl-${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}.webp`;
+  const fname = `lucky-girl-${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}.jpg`;
+  const img = document.getElementById('mainImg');
+
   if(currentImageUrl.startsWith('data:')) {
+    // base64はそのままダウンロード
     const a = document.createElement('a');
     a.download = fname; a.href = currentImageUrl; a.click();
-  } else {
+    return;
+  }
+
+  // FIX: canvas経由でダウンロードを試みる
+  try {
+    const canvas = document.createElement('canvas');
+    canvas.width  = img.naturalWidth  || 448;
+    canvas.height = img.naturalHeight || 640;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.download = fname; a.href = url; a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }, 'image/jpeg', 0.9);
+  } catch(e) {
+    // CORSエラー等 → 新タブで開く
     window.open(currentImageUrl, '_blank');
   }
 }
@@ -1853,24 +1714,18 @@ function downloadImage() {
 //  TAB SWITCHER
 // ════════════════════════════════════════
 let currentTab = 'oracle';
-let freeStyle  = localStorage.getItem('lg_freestyle') || 'anime';
 
 function switchTab(tab) {
   currentTab = tab;
   ['oracle','custom','i2i'].forEach(t => {
     document.getElementById(`tab-${t}`)?.classList.toggle('active', t === tab);
-    document.getElementById(`panel-${t}`)?.classList.toggle('active', t === tab);
+    // oracle パネルはimageCard、custom/i2i はpanel-*
+    if(t !== 'oracle') {
+      document.getElementById(`panel-${t}`)?.classList.toggle('active', t === tab);
+    }
   });
-  // oracle パネルは image-card 自体
   const card = document.getElementById('imageCard');
   if(card) card.style.display = tab === 'oracle' ? '' : 'none';
-}
-
-function setFreeStyle(s) {
-  freeStyle = s;
-  localStorage.setItem('lg_freestyle', s);
-  document.getElementById('btnFreeAnime').className = 'style-btn' + (s==='anime' ? ' active-anime' : '');
-  document.getElementById('btnFreeReal').className  = 'style-btn' + (s==='real'  ? ' active-real'  : '');
 }
 
 // ════════════════════════════════════════
@@ -1880,32 +1735,33 @@ function generateFree() {
   const userPrompt = (document.getElementById('freePrompt')?.value || '').trim();
   if(!userPrompt) { alert('プロンプトを入力してください'); return; }
   const userNeg = (document.getElementById('freeNeg')?.value || '').trim()
-    || 'nude, bad anatomy, ugly, deformed, blurry, watermark, revealing, suggestive';
+    || 'nude, nsfw, bad anatomy, ugly, deformed, blurry, watermark, revealing';
 
-  // スタイルプレフィックスだけ付加
   const prefix = freeStyle === 'anime'
-    ? '(masterpiece:1.3), best quality, 8k, anime illustration,'
-    : '(masterpiece:1.3), best quality, 8k, RAW photo, photorealistic,';
+    ? 'masterpiece, best quality, safe, sfw, anime illustration,'
+    : 'masterpiece, best quality, safe, sfw, RAW photo, photorealistic,';
+
+  // FIX: フリープロンプトも280文字制限
+  const combinedPrompt = (prefix + ' ' + userPrompt).slice(0, 380);
 
   const promptData = {
-    prompt:   prefix + ' ' + userPrompt,
+    prompt:   combinedPrompt,
     negative: userNeg,
     theme:    'フリー入力',
+    elemLabel:'フリー',
     style:    freeStyle,
     mode:     'custom',
   };
 
-  // メイン画像エリアへ切り替えて生成
   switchTab('oracle');
   setTimeout(() => {
     currentPromptData = promptData;
-    const seed = Math.floor(Math.random() * 999999);
-    generateImage(promptData, seed);
+    generateImage(promptData, Math.floor(Math.random() * 999999));
   }, 50);
 }
 
 // ════════════════════════════════════════
-//  IMG2IMG
+//  IMG2IMG (Stable Horde)
 // ════════════════════════════════════════
 let uploadedImageBase64 = null;
 
@@ -1914,11 +1770,9 @@ function onImageUpload(e) {
   if(!file) return;
   const reader = new FileReader();
   reader.onload = ev => {
-    uploadedImageBase64 = ev.target.result; // data:image/...;base64,...
+    uploadedImageBase64 = ev.target.result;
     const prev = document.getElementById('uploadPreview');
-    prev.src = uploadedImageBase64;
-    prev.style.display = 'block';
-    // ゾーンのテキストを更新
+    prev.src = uploadedImageBase64; prev.style.display = 'block';
     document.querySelector('.upload-zone .upload-text').innerHTML =
       `<span style="color:var(--green)">✅ ${file.name}</span><br><small>タップで変更</small>`;
   };
@@ -1927,24 +1781,20 @@ function onImageUpload(e) {
 
 function generateImg2Img() {
   if(!uploadedImageBase64) { alert('まず画像を選択してください'); return; }
-  const addPrompt  = (document.getElementById('i2iPrompt')?.value || '').trim();
-  const strength   = parseFloat(document.getElementById('strengthSlider')?.value || '0.6');
+  const addPrompt = (document.getElementById('i2iPrompt')?.value || '').trim();
+  const strength  = parseFloat(document.getElementById('strengthSlider')?.value || '0.6');
 
-  // img2img: Stable Hordeへ直接投稿（source_imageパラメータ）
   const basePrompt = addPrompt
-    ? `(masterpiece:1.3), best quality, ${addPrompt}`
-    : '(masterpiece:1.3), best quality, beautiful girl, long dark hair, elegant';
-  const negPrompt  = 'nude, bad anatomy, ugly, deformed, blurry, watermark, revealing, suggestive';
+    ? ('masterpiece, best quality, safe, sfw, ' + addPrompt).slice(0, 280)
+    : 'masterpiece, best quality, safe, sfw, beautiful girl, long dark hair, elegant';
 
   const promptData = {
     prompt:   basePrompt,
-    negative: negPrompt,
-    theme:    '画像参照',
-    style:    'real',
-    mode:     'img2img',
+    negative: 'nude, nsfw, bad anatomy, ugly, deformed, blurry, watermark, revealing',
+    theme:    '画像参照', elemLabel:'参照',
+    style:    'real', mode: 'img2img',
   };
 
-  // メイン表示へ切り替え
   switchTab('oracle');
   setTimeout(() => {
     currentPromptData = promptData;
@@ -1970,10 +1820,9 @@ function generateImg2ImgWithHorde(promptData, strength, sourceBase64) {
   document.getElementById('promptText').textContent = promptData.prompt;
   document.getElementById('themeLabel').textContent = '🖼️ 画像参照生成';
 
-  // base64からdata:プレフィックスを除去
   const rawB64 = sourceBase64.replace(/^data:image\/[^;]+;base64,/, '');
   const apiKey = getHordeKey();
-  hint.textContent = '✦ 参照画像をアップロード中…';
+  hint.textContent = '✦ 参照画像送信中…';
   let waitSecs = 0;
 
   const onFail = (msg) => {
@@ -1985,33 +1834,30 @@ function generateImg2ImgWithHorde(promptData, strength, sourceBase64) {
     errorDiv.style.display = 'flex';
   };
 
-  const onSuccess = (src) => {
+  // FIX: img.onload を img.src より前に設定（onRaceWinと同様の修正）
+  const showImage = (src) => {
     if(!isGenerating) return;
-    const toB64 = url => url.startsWith('http')
-      ? fetch(url).then(r=>r.blob()).then(b=>new Promise((res)=>{const fr=new FileReader();fr.onload=e=>res(e.target.result);fr.onerror=()=>res(url);fr.readAsDataURL(b);})).catch(()=>url)
-      : Promise.resolve(src);
-    toB64(src).then(data => {
-      currentImageUrl = data; isGenerating = false;
-      img.onload = () => {
-        img.classList.add('loaded'); loading.classList.add('hidden');
-        dlBtn.disabled = false; regenBtn.disabled = false;
-        saveToHistory(promptData, data);
-      };
-      img.src = data;
-    });
+    isGenerating    = false;
+    currentImageUrl = src;
+    img.onload = () => {
+      img.classList.add('loaded');
+      loading.classList.add('hidden');
+      dlBtn.disabled = false; regenBtn.disabled = false;
+      hint.textContent = '✦ 生成完了！(img2img)';
+      saveToHistory(promptData, src);
+    };
+    img.onerror = () => { loading.classList.add('hidden'); onFail('画像読み込み失敗'); };
+    img.src = src; // FIX: onload設定後に src を変更
   };
 
+  // FIX: priority_multiplier 削除
   fetch(`${HORDE_API}/generate/async`, {
     method: 'POST',
     headers: { 'Content-Type':'application/json', 'apikey':apiKey, 'Client-Agent':'lucky-girl-oracle:3.0:github' },
     body: JSON.stringify({
-      prompt:        promptData.prompt + ' ### ' + promptData.negative,
-      params: {
-        width: 512, height: 768, steps: 25, cfg_scale: 7,
-        sampler_name: 'k_euler_a', n: 1,
-        denoising_strength: strength,  // img2img強度
-      },
-      source_image:      rawB64,        // 参照画像
+      prompt: promptData.prompt + ' ### ' + promptData.negative,
+      params: { width:512, height:768, steps:25, cfg_scale:7, sampler_name:'k_euler_a', n:1, denoising_strength: strength },
+      source_image:      rawB64,
       source_processing: 'img2img',
       r2: false, nsfw: false, censor_nsfw: true,
       trusted_workers: apiKey !== HORDE_ANON,
@@ -2019,33 +1865,35 @@ function generateImg2ImgWithHorde(promptData, strength, sourceBase64) {
       models: ['Anything Diffusion','Realistic Vision','Deliberate'],
     })
   })
-  .then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); })
-  .then(data=>{
+  .then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
+  .then(data => {
     if(!data.id) throw new Error('no id');
     hordeJobId = data.id;
     hint.textContent = '✦ img2img キュー待ち…';
-    pollInterval = setInterval(()=>{
+    pollInterval = setInterval(() => {
       waitSecs += 5;
-      fetch(`${HORDE_API}/generate/check/${hordeJobId}`,{headers:{'Client-Agent':'lucky-girl-oracle:3.0:github'}})
-      .then(r=>r.json()).then(s=>{
-        if(s.done){
-          stopAll(); hint.textContent='✦ 完成！受信中…';
-          fetch(`${HORDE_API}/generate/status/${hordeJobId}`,{headers:{'Client-Agent':'lucky-girl-oracle:3.0:github'}})
-          .then(r=>r.json()).then(res=>{
-            const gen=res.generations?.[0];
-            if(!gen?.img){onFail('生成失敗');return;}
-            onSuccess(gen.img.startsWith('http') ? gen.img : `data:image/webp;base64,${gen.img}`);
-          }).catch(()=>onFail());
-        } else if(s.faulted){ stopAll(); onFail('エラー'); }
-        else {
-          const pos=s.queue_position||0, wt=s.wait_time||'?';
-          hint.textContent = pos>0 ? `✦ img2img キュー ${pos}番目 / 残り${wt}秒` : `✦ img2img 生成中… ${waitSecs}秒`;
-          if(waitSecs>300){stopAll();onFail('タイムアウト');}
+      fetch(`${HORDE_API}/generate/check/${hordeJobId}`, { headers:{'Client-Agent':'lucky-girl-oracle:3.0:github'} })
+      .then(r => r.json()).then(s => {
+        if(s.done) {
+          stopAll(); hint.textContent = '✦ 完成！受信中…';
+          fetch(`${HORDE_API}/generate/status/${hordeJobId}`, { headers:{'Client-Agent':'lucky-girl-oracle:3.0:github'} })
+          .then(r => r.json()).then(res => {
+            const gen = res.generations?.[0];
+            if(!gen?.img) { onFail('生成失敗'); return; }
+            showImage(gen.img.startsWith('http') ? gen.img : `data:image/webp;base64,${gen.img}`);
+          }).catch(() => onFail('受信エラー'));
+        } else if(s.faulted) {
+          stopAll(); onFail('img2imgエラー');
+        } else {
+          hint.textContent = s.queue_position > 0
+            ? `✦ img2img キュー ${s.queue_position}番目 / 残り${s.wait_time||'?'}秒`
+            : `✦ img2img 生成中… ${waitSecs}秒`;
+          if(waitSecs > 300) { stopAll(); onFail('タイムアウト'); }
         }
-      }).catch(e=>console.warn('poll:',e));
+      }).catch(e => console.warn('img2img poll:', e));
     }, 5000);
   })
-  .catch(e=>{ console.warn('img2img submit:',e); onFail('接続エラー'); });
+  .catch(e => { console.warn('img2img submit:', e); onFail('接続エラー'); });
 }
 
 // ════════════════════════════════════════
@@ -2054,19 +1902,24 @@ function generateImg2ImgWithHorde(promptData, strength, sourceBase64) {
 function toggleSettings() {
   const panel = document.getElementById('settingsPanel');
   panel.classList.toggle('open');
-  if(panel.classList.contains('open'))
-    document.getElementById('hordeKeyInput').value = localStorage.getItem('lg_hordekey') || '';
+  if(panel.classList.contains('open')) {
+    try { document.getElementById('hordeKeyInput').value = localStorage.getItem('lg_hordekey') || ''; }
+    catch(e){}
+  }
 }
+
 function saveHordeKey() {
   const key = document.getElementById('hordeKeyInput').value.trim();
-  if(key) localStorage.setItem('lg_hordekey', key);
-  else localStorage.removeItem('lg_hordekey');
+  try {
+    if(key) localStorage.setItem('lg_hordekey', key);
+    else localStorage.removeItem('lg_hordekey');
+  } catch(e){}
   document.getElementById('settingsPanel').classList.remove('open');
   alert(key ? '✅ APIキーを保存しました' : '✅ 匿名キーに戻しました');
 }
 
 // ════════════════════════════════════════
-//  MODAL（IndexedDB対応）
+//  MODAL
 // ════════════════════════════════════════
 function openModal(idEnc) {
   const id = decodeURIComponent(idEnc);
@@ -2076,13 +1929,14 @@ function openModal(idEnc) {
     req.onsuccess = e => {
       const h = e.target.result;
       if(!h) return;
-      document.getElementById('modalImg').src = h.imageData || '';
+      document.getElementById('modalImg').src   = h.imageData || '';
       document.getElementById('modalDate').textContent  = `${h.date||''} ${h.rokuyo||''} ${MODE_LABEL[h.mode]||''}`;
       document.getElementById('modalTheme').textContent = h.theme || h.prompt || '';
       document.getElementById('histModal').classList.add('open');
     };
   });
 }
+
 function closeModal(e) {
   if(!e || e.target === document.getElementById('histModal'))
     document.getElementById('histModal').classList.remove('open');
@@ -2093,6 +1947,7 @@ function closeModal(e) {
 // ════════════════════════════════════════
 function init() {
   initStyleUI();
+
   try {
     const div = computeToday();
     currentDiv = div;
@@ -2101,7 +1956,6 @@ function init() {
 
   renderHistory();
 
-  // 今日の最新画像をDBから探す（getAll→filterで日付検索）
   const d = currentDiv ? currentDiv.now : new Date();
   const todayKey = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   const promptData = buildPrompt(currentDiv);
@@ -2109,13 +1963,21 @@ function init() {
   document.getElementById('promptText').textContent = promptData.prompt;
 
   loadHistory().then(all => {
-    // 今日の占いモード画像のうち最新1件
     const todayEntry = all.find(h => h.date === todayKey && h.mode === 'oracle');
     if(todayEntry && todayEntry.imageData) {
       const img     = document.getElementById('mainImg');
       const loading = document.getElementById('loadingOverlay');
       currentImageUrl = todayEntry.imageData;
-      img.onload = () => { img.classList.add('loaded'); loading.classList.add('hidden'); document.getElementById('dlBtn').disabled = false; };
+      // FIX: onload を src より前に設定
+      img.onload = () => {
+        img.classList.add('loaded');
+        loading.classList.add('hidden');
+        document.getElementById('dlBtn').disabled = false;
+      };
+      img.onerror = () => {
+        // キャッシュURL が失効した場合は再生成
+        generateImage(promptData, getDailySeed(currentDiv));
+      };
       img.src = todayEntry.imageData;
     } else {
       generateImage(promptData, getDailySeed(currentDiv));
@@ -2124,7 +1986,7 @@ function init() {
 }
 
 window.onerror = (msg) => { if(typeof msg==='string' && msg.includes('Script error')) return true; };
-window.onunhandledrejection = (e) => console.warn('Unhandled:', e.reason);
+window.onunhandledrejection = e => console.warn('Unhandled:', e.reason);
 document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
